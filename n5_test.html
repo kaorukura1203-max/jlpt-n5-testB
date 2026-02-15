@@ -1,0 +1,2318 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JLPT N5 文法テスト（40問）＋弱点分析</title>
+<style>
+  body{font-family:sans-serif;padding:20px;max-width:900px;margin:0 auto;background:#ffd6e5;}
+  .muted{color:#666}
+  .choice{border:1px solid #cfe4f2;;padding:10px;margin:6px 0;cursor:pointer;border-radius:8px}
+  .choice.selected{background:#d0f0ff}
+  .choice {
+  border: 2px solid #7fbcd2;
+  background: #eef8fd;}
+  .choice:hover {
+  background: #dff2fb;}
+  .choice.selected {
+  background: #bfe7f8;
+  border-color: #2fa4d9;}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .pill{display:inline-block;border:1px solid #999;padding:4px 10px;border-radius:999px;font-size:12px}
+  /* button{margin-top:14px;padding:10px 18px;font-size:14px} */
+  button[disabled]{opacity:.5;cursor:not-allowed}
+  #next[disabled]{opacity:1;background:#eee;color:#999;border:1px solid #ccc;cursor:not-allowed;}
+  hr{margin:18px 0}
+  .card{border:1px solid #ddd;border-radius:12px;padding:14px;margin:10px 0}
+  .h2{font-size:18px;margin:0 0 8px}
+  .h3{font-size:13px;margin:0 0 4px}
+  .kpi{font-size:18px;font-weight:600}
+  .bad{color:#b00020}
+  .good{color:#0b6b2a}
+  .warn{color:#8a5a00}
+  .list{margin:6px 0 0 18px}
+  .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+  .score-bar{
+    width:160px;
+    height:8px;
+    background:#eee;
+    border-radius:4px;
+    margin-top:6px; 
+  }
+
+  #lang-select button {
+    font-size: 16px;
+    padding: 6px 12px;
+}  
+  /* ===== ロゴ追加 ===== */
+  #logo{
+    height:60px;
+    width: auto;
+}
+  
+  @media (max-width: 600px) {
+    #logo {
+      height: 50px;
+    }
+}
+
+/* ===== 評価表示 ===== */
+  .overall{
+  font-size:16px;
+  font-weight:600;
+  margin-top:8px;
+}
+
+  .score-bar-fill{
+    height:100%;
+    /* background:#f0a060; */
+    border-radius:4px;
+ }
+ 
+  .cat{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:6px 0;
+ }
+  .cat span{
+    width:120px;
+ }
+  .bar{
+    flex:1;
+    height:8px;
+    background:#eee;
+    border-radius:4px;
+ }
+  .fill{
+    height:100%;
+    background:#f0a060;
+    border-radius:4px;
+ }
+ .pct{
+    width:40px;
+    text-align:right;
+    font-size:12px;
+    color:#666;
+  } 
+  /* ===== 3色ルール（共通定義） =====
+   low  : 0–29%
+   mid  : 30–64%
+   high : 65–100%
+*/
+.fill.low,
+.score-bar-fill.low {
+  background:#d9534f; /* 赤 */
+}
+
+.fill.mid,
+.score-bar-fill.mid {
+  background:#f0a060; /* 橙 */
+}
+
+.fill.high,
+.score-bar-fill.high {
+  background:#5cb85c; /* 緑 */
+}
+
+/* 診断結果：グループ名を強制的に小さくする */
+#resultView h3{
+  font-size:12px !important;
+  margin:4px 0 !important;
+  font-weight:600;
+}
+/* 診断結果：横バー左のグループ名（PARTICLEなど） */
+#resultView .cat > span:first-child{
+  font-size:12px !important;
+  font-weight:500;
+}
+
+/* 強化練習：問題数は10問のみ表示 */
+label:has(input[name="practiceCount"][value="20"]),
+label:has(input[name="practiceCount"][value="30"]) {
+  display: none;
+}
+#next[disabled]{
+  opacity: 1 !important;
+  color: #666 !important;
+  background: #eee !important;
+  border: 1px solid #ccc !important;
+}
+
+#btnB { display: none; }
+
+/* ★ ここから追加 ★ */
+#features li {
+  margin-bottom: 12px;
+}
+
+#features li span {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+/* ★ ここまで追加 ★ */
+/* ★ ここまで追加 ★ */
+
+/* ★ クリック不能対策（追加） */
+#testView {
+  position: relative;
+  z-index: 1;
+}
+
+.choice {
+  pointer-events: auto;
+}
+/* ===== Language（設定ボタン：A/Cと完全に分離）===== */
+#lang-select button{
+  background:#f2f2f2 !important;
+  color:#333 !important;
+  border:1px solid #aaa;
+  border-radius:8px;
+  padding:6px 12px;
+  font-size:15px;
+  font-weight:400;
+  cursor:pointer;
+}
+
+/* hover も控えめ */
+#lang-select button:hover{
+  background:#e6e6e6 !important;
+}
+
+/* ===== メインボタン（役割が違うので別色）===== */
+#goMain{
+  background:#ff7aa2 !important;
+  color:#fff !important;
+  border:none;
+  border-radius:10px;
+  padding:6px 14px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+#goMain:hover{
+  background:#ff5f8f !important;
+}
+
+/* ===== スマホ対策 ===== */
+@media (max-width:480px){
+  #lang-select button{
+    font-size:16px;
+    padding:8px 14px;
+  }
+}
+
+/* ✅ ここを追加：goMainだけは最終的にピンクで確定させる（削除なし） */
+#lang-select #goMain{
+  background:#ff7aa2 !important;
+  color:#fff !important;
+}
+#lang-select #goMain:hover{
+  background:#ff5f8f !important;
+}
+
+/* ===== A / C ボタン色（追加：上書きのみ・削除なし）===== */
+/* A：レベルチェック（別色） */
+#btnA{
+  background:#6fa8dc !important;
+  color:#fff !important;
+}
+#btnA:hover{
+  background:#5b96cc !important;
+}
+
+/* C：強化練習（別色） */
+#btnC{
+  background:#7bc8a4 !important;
+  color:#fff !important;
+}
+#btnC:hover{
+  background:#66b892 !important;
+}
+#btnC:hover{
+  background:#66b892 !important;
+}
+#next{
+  font-size: 16px;
+  padding: 12px 20px;
+}
+/* ===== 評価テキスト用マーク ===== */
+p.high::before{
+  content:"🌸 ";
+}
+p.mid::before{
+  content:"⚠️ ";
+}
+p.low::before{
+  content:"❗ ";
+}
+</style>
+</head>
+
+<body>
+  
+
+  <!-- 言語切り替え -->
+  <div id="lang-select" style="margin-bottom:12px;">
+    🌐 Language：
+    <button id="btn-ja">日本語</button>
+    <button id="btn-en">English</button>
+    <button id="btn-de">Deutsch</button>
+    <button id="btn-ko">한국어</button>
+
+    
+    <button id="goMain">メイン</button>
+  </div>
+  
+  
+<div id="page1">
+  <!-- 説明文 -->
+  <h1 id="title" style="display:flex; align-items:center; gap:12px;">
+    <span id="titleText">JLPT N5対策アプリ</span>
+    <img id="logo" src="logo.png" alt="Academy Logo">
+  </h1>
+
+  <p id="intro">
+    こんにちは！<br>
+    このアプリは、JLPT N5の文法を べんきょうする アプリです。
+  </p>
+
+  <p id="what">
+    このアプリでは、つぎの 3つ が できます。
+  </p>
+  
+  <ul id="features">
+    <li><strong>A：レベルチェック</strong> <span class="en">(Level Check)</span><br>
+      <span id="featA">いまの 日本語レベルを しらべます。</span>
+    </li>
+    <li><strong>B：弱点分析</strong> <span class="en">(Weakness Analysis)</span><br>
+      <span id="featB">にがてな 文法が わかります。</span>
+    </li>
+    <li><strong>C：強化練習</strong> <span class="en">(Intensive Practice)</span><br>
+      <span id="featC">にがてな 文法を たくさん れんしゅうします。</span>
+    </li>
+  </ul>
+  
+  <p id="recommend">
+    はじめての人は、<strong>A（レベルチェック）</strong>から はじめてください。
+  </p>
+  
+  <!-- メニュー -->
+  <div id="menu" style="margin:16px 0;">
+   <button id="btnA">[ A レベルチェック ]</button>
+   <button id="btnB">[ B 弱点分析 ]</button>
+   <button id="btnC">[ C 強化練習 ]</button>
+ </div>
+</div>
+  
+<div id="page2" style="display:none;">
+
+    <h2 id="about">レベルチェックについて</h2>
+  
+    <ul id="rule">
+      <li id="rule1">もんだいは <strong>40問</strong> あります。</li>
+      <li id="rule2">文を よんで、（　）や（★）に はいる いちばん いい ことばを えらびます。</li>
+      <li id="rule3">えらぶ ことばは <strong>4つ</strong> あります。</li>
+      <li id="rule4">
+        （　　）に（★）が ある もんだいが あります。
+         ことばを ただしい じゅんばんに ならべて、（★）の ことばを えらんでください。
+      </li>
+      <li id="rule5">えらばないと、つぎに すすみません。</li>
+      <li class="note">※ もんだいは、まえに もどることが できません。</li>
+    </ul>
+  
+    <p id="start">
+      じゅんびが できたら、したの ボタンを おしてください。
+    </p>
+    
+    <div id="readyStatus">準備OK / Ready</div>
+
+    <button id="toPage3">▶ レベルチェックをはじめる</button>
+
+</div> <!-- page2 END -->
+
+<div id="practiceSetup" style="display:none;">
+  <h2>
+    強化練習 <span class="muted">(Intensive Practice)</span>
+  </h2>
+
+  <p class="muted">
+    にがてな文法を集中的に練習します。
+    <br>
+    <span class="muted">Practice your weak grammar points intensively.</span>
+  </p>
+
+  <div class="card">
+    <label>
+      <input type="radio" name="practiceGroup" value="PARTICLE">
+      助詞 <span class="muted">(Particles)</span>
+    </label><br>
+
+    <label>
+      <input type="radio" name="practiceGroup" value="COMMUNICATION">
+      コミュニケーション文法 <span class="muted">(Communication Grammar)</span>
+    </label><br>
+
+    <label>
+      <input type="radio" name="practiceGroup" value="ORDER">
+      並び替え <span class="muted">(Word Order)</span>
+    </label><br>
+
+    <label>
+      <input type="radio" name="practiceGroup" value="BASIC_GRAMMAR">
+      基本文法 <span class="muted">(Basic Grammar)</span>
+    </label>
+  </div>
+
+  <div class="card">
+    <label><input type="radio" name="practiceCount" value="10" checked> 10問</label>
+    <label><input type="radio" name="practiceCount" value="20"> 20問</label>
+    <label><input type="radio" name="practiceCount" value="30"> 30問</label>
+  </div>
+
+  <button id="startPractice">▶ 強化練習をはじめる</button>
+
+  <hr style="margin:20px 0;">
+
+  <div class="card" style="background:#fafafa;">
+    <h3 id="appliedTitle" style="margin:0 0 8px;">応用練習について</h3>
+    <p id="appliedDesc" style="margin:0;font-size:14px;line-height:1.6;">
+      短い文しょうを よみ、<br>
+      （　　）に 入る いちばん いい ことばを、<br>
+      ３つの中から えらびます。<br><br>
+      この 応用練習が できれば、<br>
+      あなたは N5レベルの 文法を りかいしています。<br>
+      安心して、つぎに すすんで ください。
+    </p>
+    <button id="startAppliedPractice">▶ 応用練習をはじめる</button>
+  </div>
+</div> <!-- practiceSetup END -->
+
+<div id="app">
+  <div id="testView" style="display:none;">
+    <div class="row" style="justify-content:space-between;">
+      <div>
+        <div class="pill" id="modePill">テスト</div>
+        <div class="muted" id="status">読み込み中…</div>
+      </div>
+      <div class="pill mono" id="progress">-- / --</div>
+    </div>
+
+    <hr />
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;">
+        <div class="pill" id="groupPill">—</div>
+        <div class="pill" id="typePill">—</div>
+      </div>
+
+      <h2 class="h2" id="q">—</h2>
+      <div id="choices"></div>
+
+      <button id="next" disabled>次へ</button>
+
+      <div id="mustSelectNote" class="muted" style="margin-top:8px;font-size:12px;">
+        ※ 選択しないと進めません（仕様どおり）
+      </div>
+    </div>
+  </div>
+
+   <div id="resultView" style="display:none;"></div>
+ </div> <!-- app END -->
+
+<script>
+  
+
+/** =========================
+ *  設定（あなたの確定案そのまま）
+ * ========================= */
+
+
+const OVERALL_JUDGE = (rate) => {
+  if (rate >= 80) return { key: "good", cls: "good" };
+  if (rate >= 65) return { key: "warn", cls: "warn" };
+  return { key: "bad", cls: "bad" };
+};
+// ★診断分析：多言語文言（診断結果専用）
+const DIAG_TEXT = {
+  ja: {
+    result: "診断結果",
+    passline: "合格ライン：65%",
+    grammarLevel: "▼ 文法ごとの理解度",
+    legend: "色の見方：赤＝にがて／橙＝もう少し／緑＝できている",
+    review: "▼ 間違えた文法（復習）",
+    retry: "もう一回やる",
+    rate: (r,c,t)=>`正解率 ${r}%（${c} / ${t}）`,
+    levelIntro: "まだ不安定です。以下のポイントを意識して復習しましょう。",
+    
+    test: "テスト",
+    perfect: "Perfect!",
+    noteShuffle: "※ 問題セットが変わる仕様にする場合は、生成側（抽出）で制御してください。",
+    miss: "ミス",
+    score: "正解",
+    levelLabel: "理解度",
+
+    judge: {
+     good: "合格レベル",
+     warn: "要復習",
+     bad:  "基礎不足",
+     goodMsg: "N5文法は安定しています",
+     warnMsg: "弱点文法を重点的に復習しましょう",
+     badMsg:  "文法の基礎からやり直しましょう"
+   },
+   groups: {
+     PARTICLE: "助詞",
+     COMMUNICATION: "コミュニケーション文法",
+     ORDER: "並び替え",
+     BASIC_GRAMMAR: "基本文法"
+   },
+   groupHint: {
+    PARTICLE: {
+     ja: "「を・に・で」などの使い分けが、まだ安定していません。文の中で「だれが・なにを・どこで」を考えましょう。",
+     ko: "「を・に・で」의 구분이 아직 불안정합니다. 문장에서 ‘누가・무엇을・어디에서’를 생각해 보세요.",
+     en: "The use of particles like wo/ni/de is still unstable. Think about who, what, and where in the sentence.",
+     de: "Die Verwendung von wo/ni/de ist noch unsicher. Denke an: wer, was, wo."
+   },
+   COMMUNICATION: {
+     ja: "相手に依頼・許可・禁止を伝える文が、少し難しいようです。短い文で練習しましょう。",
+     ko: "허가·금지 표현이 어렵습니다. 짧은 문장으로 연습해 보세요.",
+     en: "Permission and prohibition expressions are difficult. Practice with short sentences.",
+     de: "Ausdrücke für Erlaubnis und Verbot sind schwierig. Übe mit kurzen Sätzen."
+   },
+   ORDER: {
+     ja: "文の語順（どの語を先に置くか）が、まだ不安定です。主語・目的語・動詞の並びを意識しましょう。",
+     ko: "어순이 아직 불안정합니다. 주어·목적어·동사의 순서를 의식하세요.",
+     en: "Word order is still unstable. Pay attention to subject, object, and verb.",
+     de: "Die Wortstellung ist noch unsicher. Achte auf Subjekt, Objekt und Verb."
+   },
+   BASIC_GRAMMAR: {
+     ja: "日本語の基本的な文の形を、例文で一つずつ確認しましょう。",
+     ko: "일본어 기본 문형을 예문과 함께 하나씩 확인하세요.",
+     en: "Check basic sentence patterns one by one with examples.",
+     de: "Überprüfe grundlegende Satzmuster einzeln mit Beispielen."
+  }
+},
+   levelWord: {
+     high: "よくできています",
+     mid: "だいたい理解しています",
+     low: "まだ不安定です",
+     veryLow: "重点的に復習しましょう"
+   }
+ },
+
+  en: {
+    result: "Results",
+    passline: "Pass line: 65%",
+    grammarLevel: "▼ Grammar understanding by category",
+    legend: "Legend: Red=Weak / Orange=Almost / Green=Good",
+    review: "▼ Grammar to review",
+    retry: "Try again",
+    rate: (r,c,t)=>`Accuracy ${r}% (${c} / ${t})`,
+    levelIntro: "Not stable yet. Review the following points carefully.",
+    
+    test: "Test",
+    noteShuffle: "※ If you want the question set to change, control it on the generation side.",
+    miss: "Mistakes",
+    perfect: "Perfect!",
+    score: "Correct",
+    levelLabel: "Level",
+    
+    judge: {
+     good: "Pass level",
+     warn: "Needs review",
+     bad:  "Insufficient basics",
+     goodMsg: "Your N5 grammar is stable.",
+     warnMsg: "Review weak grammar points.",
+     badMsg:  "Restart from grammar basics."
+   },
+   groups: {
+     PARTICLE: "Particles",
+     COMMUNICATION: "Communication grammar",
+     ORDER: "Word order",
+     BASIC_GRAMMAR: "Basic grammar"
+   },
+   levelWord: {
+     high: "Very good",            // en
+     mid: "Mostly understood",
+     low: "Not stable yet",
+     veryLow: "Needs intensive review"
+   }
+ },
+
+  de: {
+    result: "Ergebnis",
+    passline: "Bestehensgrenze: 65%",
+    grammarLevel: "▼ Grammatikverständnis nach Kategorien",
+    legend: "Legende: Rot=Schwach / Orange=Fast / Grün=Gut",
+    review: "▼ Zu wiederholende Grammatik",
+    retry: "Noch einmal",
+    rate: (r,c,t)=>`Quote ${r}% (${c} / ${t})`,
+    levelIntro: "Noch unsicher. Bitte überprüfen Sie die folgenden Punkte.",
+
+    test: "Test",
+    noteShuffle: "※ Wenn sich der Fragensatz ändern soll, steuern Sie dies bitte auf der Generierungsseite.",
+    miss: "Fehler",
+    perfect: "Perfekt!",
+    score: "Richtig",
+    levelLabel: "Niveau",
+    
+    judge: {
+     good: "Bestanden",
+     warn: "Wiederholung nötig",
+     bad:  "Grundlagen unzureichend",
+     goodMsg: "Ihre N5-Grammatik ist stabil.",
+     warnMsg: "Bitte wiederholen Sie die schwächeren Grammatikpunkte.",
+     badMsg:  "Beginnen Sie erneut mit den grammatischen Grundlagen."
+   },
+   groups: {
+     PARTICLE: "Partikeln",
+     COMMUNICATION: "Kommunikationsgrammatik",
+     ORDER: "Wortstellung",
+     BASIC_GRAMMAR: "Grundgrammatik"
+   },
+   levelWord: {
+     high: "Sehr gut",             // de
+     mid: "Größtenteils verstanden",
+     low: "Noch unsicher",
+     veryLow: "Intensive Wiederholung nötig"
+   }
+ },
+
+  ko: {
+    result: "진단 결과",
+    passline: "합격 기준: 65%",
+    grammarLevel: "▼ 문법 이해도",
+    legend: "색상: 빨강=약함 / 주황=거의 / 초록=잘함",
+    review: "▼ 복습할 문법",
+    retry: "다시 하기",
+    rate: (r,c,t)=>`정답률 ${r}% (${c} / ${t})`,
+    levelIntro: "아직 불안정합니다. 아래 항목을 중심으로 복습하세요.",
+
+    test: "테스트",
+    noteShuffle: "※ 문제 세트가 변경되도록 하려면 생성 단계에서 제어하세요.",
+    miss: "실수",
+    perfect: "완벽해요!",
+    score: "정답",
+    levelLabel: "이해도",
+    
+     judge: {
+     good: "합격 수준",
+     warn: "복습 필요",
+     bad:  "기초 부족",
+     goodMsg: "N5 문법이 안정적으로 이해되고 있습니다.",
+     warnMsg: "약한 문법 항목을 집중적으로 복습하세요.",
+     badMsg:  "문법의 기초부터 다시 학습하세요."
+    },
+    groups: {
+     PARTICLE: "조사",
+     COMMUNICATION: "의사소통 문법",
+     ORDER: "어순",
+     BASIC_GRAMMAR: "기본문법"
+    },
+    levelWord: {
+     high: "잘 이해하고 있습니다",  // ko
+     mid: "대체로 이해하고 있습니다",
+     low: "아직 불안정합니다",
+     veryLow: "집중 복습이 필요합니다"
+   }
+  }
+};
+
+const GROUP_ORDER = ["PARTICLE","COMMUNICATION","ORDER","BASIC_GRAMMAR"];
+const GROUP_LABEL = {
+  PARTICLE: "group_particle",
+  COMMUNICATION: "group_communication",
+  ORDER:"group_order",
+  BASIC_GRAMMAR: "group_basic"
+};
+const GROUP_HINT = {
+  PARTICLE: "group_hint_particle",
+  COMMUNICATION: "group_hint_communication",
+  ORDER: "group_hint_order",
+  BASIC_GRAMMAR: "group_hint_basic"
+};
+const I18N = {
+  ja: {
+    group_hint_particle:
+      "「を・に・で」などの使い分けが、まだ安定していません。文の中で「だれが・なにを・どこで」を考えましょう。"
+  },
+  en: {
+    group_hint_particle:
+      "The usage of particles such as \"を\", \"に\", and \"で\" is not yet stable. Try thinking about \"who\", \"what\", and \"where\" in each sentence."
+  },
+  de: {
+    group_hint_particle:
+      "Die Verwendung von Partikeln wie „を“, „に“ und „で“ ist noch nicht stabil. Denke in jedem Satz an „wer“, „was“ und „wo“."
+  }
+};
+const LEVEL_WORD = (rate) => {
+  if (rate >= 80) return "よくできています";
+  if (rate >= 50) return "だいたい理解しています";
+  if (rate >= 30) return "まだ不安定です。以下のポイントを意識して復習しましょう。";
+  return "重点的に復習しましょう";
+};
+
+let currentLang = "ja";
+
+/* ===============================
+ * 応用レビュー 再描画用（★追加）
+ * =============================== */
+ function redrawAppliedReview() {
+  const T = APPLIED_REVIEW_TEXT[currentLang] ?? APPLIED_REVIEW_TEXT.ja;
+  const n = appliedReviewData.correct;
+
+  qEl.textContent = T.title;
+  choicesEl.innerHTML = "";
+
+  choicesEl.insertAdjacentHTML(
+    "beforeend",
+    `<div style="font-weight:600; margin-bottom:8px;">${T.score(n)}</div>`
+  );
+
+  const msg =
+    n >= 3 ? T.c3 :
+    n === 2 ? T.c2 : T.c1;
+
+  const box = document.createElement("div");
+  box.style.whiteSpace = "pre-line";
+  box.style.fontSize = "16px";
+  box.style.lineHeight = "1.8";
+  box.textContent = msg;
+  choicesEl.appendChild(box);
+
+  nextBtn.textContent = T.next3;
+  nextBtn.disabled = false;
+}
+function setLang(lang){
+  currentLang = lang;
+  window.currentLang = lang; // ← 診断分析用
+  console.log("setLang called:", lang);
+
+  const title = document.getElementById("title");
+  const titleText = document.getElementById("titleText");
+  const intro = document.getElementById("intro");
+  const what = document.getElementById("what");
+  const featA = document.getElementById("featA");
+  const featB = document.getElementById("featB");
+  const featC = document.getElementById("featC");
+  const recommend = document.getElementById("recommend");
+
+  const about = document.getElementById("about");
+  const rule1 = document.getElementById("rule1");
+  const rule2 = document.getElementById("rule2");
+  const rule3 = document.getElementById("rule3");
+  const rule4 = document.getElementById("rule4");
+  const rule5 = document.getElementById("rule5");
+  const start = document.getElementById("start");
+  const readyStatus = document.getElementById("readyStatus");
+  const toPage3Btn = document.getElementById("toPage3");
+  const mustSelectNote = document.getElementById("mustSelectNote");
+
+  // =========================
+  // 日本語
+  // =========================
+  if(lang === "ja"){
+   if(titleText) titleText.textContent = "JLPT N5対策アプリ";
+   if(intro) intro.innerHTML = "こんにちは！<br>このアプリは、JLPT N5の文法を べんきょうする アプリです。";
+   if(what) what.textContent = "このアプリでは、つぎの 3つ が できます。";
+   if(featA) featA.textContent = "いまの 日本語レベルを しらべます。";
+   if(featB) featB.textContent = "にがてな 文法が わかります。";
+   if(featC) featC.textContent = "にがてな 文法を たくさん れんしゅうします。";
+   if(recommend) recommend.innerHTML = "はじめての人は、<strong>A（レベルチェック）</strong>から はじめてください。";
+
+   if(about) about.textContent = "レベルチェックについて";
+   if(rule1) rule1.innerHTML = "もんだいは <strong>40問</strong> あります。";
+   if(rule2) rule2.textContent = "文を よんで、（　）や（★）に はいる いちばん いい ことばを えらびます。";
+   if(rule3) rule3.innerHTML = "えらぶ ことばは <strong>4つ</strong> あります。";
+   if(rule4) rule4.textContent = 
+      "（　　）に（★）が ある もんだいが あります。ことばを ただしい じゅんばんに ならべて、（★）の ことばを えらんでください。";
+
+   if(rule5) rule5.textContent = "えらばないと、つぎに すすみません。";
+   if(start) start.textContent = "じゅんびが できたら、したの ボタンを おしてください。";
+   if(readyStatus) readyStatus.textContent = "準備OK";
+   if(toPage3Btn) toPage3Btn.textContent = "▶ レベルチェックをはじめる";
+
+   if(mustSelectNote) mustSelectNote.textContent = "※ 選択しないと進めません（仕様どおり）";
+}
+  // =========================
+  // English
+  // =========================
+  else if(lang === "en"){
+   if(titleText) titleText.textContent = "JLPT N5 Prep App";
+   if(intro) intro.innerHTML = "Hello!<br>This app helps you study JLPT N5 grammar.";
+   if(what) what.textContent = "With this app, you can do the following three things:";
+   if(featA) featA.textContent = "Check your current Japanese level.";
+   if(featB) featB.textContent = "Find out which grammar points are difficult for you.";
+   if(featC) featC.textContent = "Practice difficult grammar intensively.";
+   if(recommend) recommend.innerHTML =
+    "If this is your first time, please start with <strong>A (Level Check)</strong>.";
+
+   if(about) about.textContent = "About the Level Check";
+   if(rule1) rule1.innerHTML = "There are <strong>40 questions</strong>.";
+   if(rule2) rule2.textContent =
+    "Read each sentence and choose the best word for ( ) or (★).";
+   if(rule3) rule3.innerHTML = "There are <strong>4 choices</strong>.";
+   if(rule4) rule4.textContent =
+    "Some questions have (★). Put the words in the correct order and choose the word for (★).";
+   if(rule5) rule5.textContent = "You must select an answer to proceed.";
+   if(start) start.textContent = "When you are ready, press the button below.";
+   if(readyStatus) readyStatus.textContent = "Ready";
+   if(toPage3Btn) toPage3Btn.textContent = "▶ Start the Level Check";
+
+   if(mustSelectNote){
+     mustSelectNote.textContent =
+      "※ You must select an answer to proceed.";
+  }
+}
+
+  // =========================
+  // Deutsch
+  // =========================
+  else if(lang === "de"){
+   if(titleText) titleText.textContent = "JLPT N5 Vorbereitung";
+   if(intro) intro.innerHTML =
+     "Hallo!<br>Diese App hilft dir beim Lernen der JLPT-N5-Grammatik.";
+   if(what) what.textContent =
+     "Mit dieser App kannst du die folgenden drei Dinge tun:";
+   if(featA) featA.textContent =
+     "Überprüfe dein aktuelles Japanisch-Niveau.";
+   if(featB) featB.textContent =
+     "Finde heraus, welche Grammatikpunkte dir schwerfallen.";
+   if(featC) featC.textContent =
+     "Übe schwierige Grammatik intensiv.";
+   if(recommend) recommend.innerHTML =
+     "Wenn dies dein erstes Mal ist, beginne bitte mit <strong>A (Leveltest)</strong>.";
+
+   if(about) about.textContent = "Über den Leveltest";
+   if(rule1) rule1.innerHTML = "Es gibt <strong>40 Fragen</strong>.";
+   if(rule2) rule2.textContent =
+     "Lies den Satz und wähle das beste Wort für ( ) oder (★).";
+   if(rule3) rule3.innerHTML =
+     "Es gibt <strong>4 Antwortmöglichkeiten</strong>.";
+   if(rule4) rule4.textContent =
+     "Einige Fragen haben ein (★). Ordne die Wörter in die richtige Reihenfolge und wähle das Wort für (★).";
+   if(rule5) rule5.textContent =
+     "Ohne Auswahl kannst du nicht fortfahren.";
+   if(start) start.textContent =
+     "Wenn du bereit bist, drücke die Taste unten.";
+   if(readyStatus) readyStatus.textContent = "Bereit";
+   if(toPage3Btn) toPage3Btn.textContent = "▶ Leveltest starten";
+  
+   if(mustSelectNote){
+     mustSelectNote.textContent =
+      "※ Bitte wähle eine Antwort, um fortzufahren.";
+  }
+}
+  // =========================
+  // 한국어
+  // =========================
+  else if(lang === "ko"){
+   if(titleText) titleText.textContent = "JLPT N5 대비 앱";
+   if(intro) intro.innerHTML =
+     "안녕하세요!<br>이 앱은 JLPT N5 문법 학습을 돕는 앱입니다.";
+   if(what) what.textContent =
+     "이 앱에서는 다음 세 가지를 할 수 있습니다.";
+   if(featA) featA.textContent =
+     "현재 일본어 실력을 확인합니다.";
+   if(featB) featB.textContent =
+     "어려운 문법 항목을 알 수 있습니다.";
+   if(featC) featC.textContent =
+     "어려운 문법을 집중적으로 연습합니다.";
+   if(recommend) recommend.innerHTML =
+     "처음이라면 <strong>A(레벨 체크)</strong>부터 시작하세요.";
+
+   if(about) about.textContent = "레벨 체크 안내";
+   if(rule1) rule1.innerHTML = "<strong>40문제</strong>가 있습니다.";
+   if(rule2) rule2.textContent =
+     "문장을 읽고 ( ) 또는 (★)에 들어갈 가장 알맞은 말을 고르세요.";
+   if(rule3) rule3.innerHTML = "<strong>4개의 선택지</strong>가 있습니다.";
+   if(rule4) rule4.textContent =
+    "(★)가 있는 문제도 있습니다. 단어를 올바른 순서로 배열한 뒤 (★)의 단어를 고르세요.";
+   if(rule5) rule5.textContent =
+     "선택하지 않으면 다음으로 진행할 수 없습니다.";
+   if(start) start.textContent =
+     "준비가 되면 아래 버튼을 눌러 주세요.";
+   if(readyStatus) readyStatus.textContent = "준비 완료";
+   if(toPage3Btn) toPage3Btn.textContent = "▶ 레벨 체크 시작";
+
+   if(mustSelectNote){
+     mustSelectNote.textContent =
+      "※ 선택하지 않으면 다음으로 진행할 수 없습니다.";
+  }
+}
+  // ★ A / B / C は初回のみ設定（再描画で揺れさせない）
+  if (!window._abcLabelFixed) {
+  setTimeout(() => {
+    document.getElementById("btnA").textContent =
+      lang==="en" ? "[ A Level Check ]"
+      : lang==="de" ? "[ A Leveltest ]"
+      : lang==="ko" ? "[ A 레벨 체크 ]"
+      : "[ A レベルチェック ]";
+
+    document.getElementById("btnB").textContent =
+      lang==="en" ? "[ B Weakness Analysis ]"
+      : lang==="de" ? "[ B Schwächenanalyse ]"
+      : lang==="ko" ? "[ B 약점 분석 ]"
+      : "[ B 弱点分析 ]";
+
+    document.getElementById("btnC").textContent =
+      lang==="en" ? "[ C Practice ]"
+      : lang==="de" ? "[ C Training ]"
+      : lang==="ko" ? "[ C 연습 ]"
+      : "[ C 強化練習 ]";
+  }, 0);
+    window._abcLabelFixed = true;
+  }
+
+  // ★ 強化練習ボタン（これは毎回でOK）
+  const startPracticeBtn = document.getElementById("startPractice");
+  if (startPracticeBtn) {
+    startPracticeBtn.textContent =
+      lang === "en" ? "▶ Start Practice"
+      : lang === "de" ? "▶ Training starten"
+      : lang === "ko" ? "▶ 연습 시작"
+      : "▶ 強化練習をはじめる";
+  }
+
+// ★★★ ここ ★★★
+
+  const appliedTitle = document.getElementById("appliedTitle");
+  const appliedDesc  = document.getElementById("appliedDesc");
+
+  if (appliedTitle && appliedDesc) {
+   if (lang === "en") {
+     appliedTitle.textContent = "About Applied Practice";
+     appliedDesc.innerHTML =
+      "Read a short passage.<br>" +
+      "Choose the best word for the blank ( ).<br>" +
+      "Select the correct answer from three options.<br><br>" +
+      "If you can complete this practice,<br>" +
+      "you understand N5-level grammar well.<br>" +
+      "Please proceed with confidence.";
+  }  else if (lang === "de") {
+     appliedTitle.textContent = "Über die Anwendungsübung";
+     appliedDesc.innerHTML =
+      "Lies einen kurzen Text.<br>" +
+      "Wähle das beste Wort für die Lücke ( ).<br>" +
+      "Wähle eine Antwort aus drei Optionen.<br><br>" +
+      "Wenn du diese Übung schaffst,<br>" +
+      "verstehst du die N5-Grammatik gut.<br>" +
+      "Bitte mache selbstbewusst weiter.";
+  }  else if (lang === "ko") {
+     appliedTitle.textContent = "응용 연습 안내";
+     appliedDesc.innerHTML =
+      "짧은 문장을 읽고,<br>" +
+      "( )에 들어갈 가장 알맞은 말을 고릅니다.<br>" +
+      "3개의 선택지 중에서 선택하세요.<br><br>" +
+      "이 연습을 할 수 있다면,<br>" +
+      "N5 수준의 문법을 이해하고 있는 것입니다.<br>" +
+      "안심하고 다음으로 진행하세요.";
+  }  else {
+     appliedTitle.textContent = "応用練習について";
+     appliedDesc.innerHTML =
+      "短い文しょうを よみ、<br>" +
+      "（　　）に 入る いちばん いい ことばを、<br>" +
+      "３つの中から えらびます。<br><br>" +
+      "この 応用練習が できれば、<br>" +
+      "あなたは N5レベルの 文法を りかいしています。<br>" +
+      "安心して、つぎに すすんで ください。";
+  }
+}
+  // ▼ 応用練習をはじめる ボタン（ここが正解）
+ const startAppliedBtn = document.getElementById("startAppliedPractice");
+ if (startAppliedBtn) {
+   startAppliedBtn.textContent =
+     lang === "en" ? "▶ Start Applied Practice"
+     : lang === "de" ? "▶ Anwendungsübung starten"
+     : lang === "ko" ? "▶ 응용 연습 시작"
+     : "▶ 応用練習をはじめる";
+}
+
+
+  // ★ ここに入れる（setLang の最後）
+    if (typeof showDiagnosis === "function" && window.lastDiagnosisResult) {
+      showDiagnosis();
+  }
+    if (
+     window.practiceMode === true &&
+     resultView.style.display === "block" &&
+     typeof showPracticeResult === "function"
+  ) {
+    showPracticeResult();
+  }
+  if (currentExplanationQuestion && currentExplanationBox) {
+      const q = currentExplanationQuestion;
+      currentExplanationBox.textContent =
+        q.explanation?.[currentLang]
+        ?? q.explanation?.ja
+        ?? "（解説は未登録）";
+    }
+  // ★ 振り返り画面が出ている場合はレビューだけ再描画
+  
+
+  if (
+  window.practiceMode === "APPLIED" &&
+  isAppliedReviewScreen === true &&
+  appliedReviewData
+) {
+  redrawAppliedReview();
+}
+}
+window.setLang = setLang;
+
+// 「間違えた文法だけ」個別説明（あなたが作った文章を短くそのまま）
+const GRAMMAR_EXPLAIN = {
+  "が": {
+    ja: "【助詞「が」】意味：文の中で「だれが・なにが」を示す。新しい情報や、強調したい主語を表す。例：ねこがいます。だれが来ましたか。",
+    en: "Particle \"ga\": marks the subject, especially new or emphasized information. Example: A cat is here. Who came?",
+    de: "Partikel „ga“: kennzeichnet das Subjekt, besonders neue oder betonte Information. Beispiel: Eine Katze ist da. Wer ist gekommen?",
+    ko: "조사 「が」: 문장에서 주어를 나타내며, 새 정보나 강조할 대상을 표시함. 예: 고양이가 있어요. 누가 왔어요?"
+  },
+  "を": {
+    ja: "【助詞「を」】意味：動作の対象を表す。だれが「なにを」するかを示す。例：ごはんを食べます。本を読みます。",
+    en: "Particle \"wo\": marks the direct object of an action. Example: I eat rice. I read a book.",
+    de: "Partikel „wo“: kennzeichnet das direkte Objekt einer Handlung. Beispiel: Ich esse Reis. Ich lese ein Buch.",
+    ko: "조사 「を」: 동작의 대상을 나타냄. 예: 밥을 먹어요. 책을 읽어요."
+  },
+  "に": {
+    ja: "【助詞「に」】意味：文の中で「時間」「目的地」「存在する場所」などを表す助詞です。\n\n① 時間：動作が起こる時刻や日付を示します。\n例：7時に起きます。月曜日に学校へ行きます。\n\n② 目的地：移動の到着点・行き先を示します。\n例：学校に行きます。日本に来ました。\n\n文脈によって意味が変わるため、「何を表しているにか」を意識して使い分けましょう。",
+    en: "Particle \"ni\": indicates time, destination, or the location where something exists.\n\n① Time: shows when an action happens.\nExample: I wake up at 7. I go to school on Monday.\n\n② Destination: shows the destination of movement.\nExample: I go to school. I came to Japan.\n\nPay attention to the context to understand which meaning \"ni\" has.",
+    de: "Partikel „ni“: zeigt Zeitpunkte, Zielorte oder Existenzorte an.\n\n① Zeit: Zeitpunkt oder Datum einer Handlung.\nBeispiel: Ich stehe um 7 Uhr auf. Am Montag gehe ich zur Schule.\n\n② Ziel: Ziel einer Bewegung.\nBeispiel: Ich gehe zur Schule. Ich bin nach Japan gekommen.\n\nAchten Sie auf den Kontext, um die Bedeutung von „ni“ richtig zu verstehen.",
+    ko: "조사 「に」: 시간, 목적지, 또는 존재하는 장소를 나타내는 조사입니다.\n\n① 시간: 동작이 일어나는 시각이나 날짜.\n예: 7시에 일어나요. 월요일에 학교에 가요.\n\n② 목적지: 이동의 도착점이나 행선지.\n예: 학교에 가요. 일본에 왔어요.\n\n문맥에 따라 의미가 달라지므로, 어떤 의미의 「に」인지 생각하며 사용하세요."
+  },
+  "で": {
+    ja: "【助詞「で」】意味：動作が行われる場所・手段・方法を表す。例：学校で勉強します。バスで行きます。",
+    en: "Particle \"de\": indicates the place where an action occurs, or the means/method. Example: I study at school. I go by bus.",
+    de: "Partikel „de“: gibt den Ort einer Handlung oder das Mittel/Instrument an. Beispiel: Ich lerne in der Schule. Ich fahre mit dem Bus.",
+    ko: "조사 「で」: 동작이 이루어지는 장소나 수단·방법을 나타냄. 예: 학교에서 공부해요. 버스로 가요."
+  },
+  "から〜まで": {
+    ja: "【助詞「から〜まで」】意味：範囲の始まりと終わりを表す（時間・場所）。例：9時から5時まで働きます。東京から大阪まで行きます。",
+    en: "Particles \"kara ~ made\": indicate the start and end of a range (time/place). Example: I work from 9 to 5. I go from Tokyo to Osaka.",
+    de: "Partikeln „kara ~ made“: geben Anfang und Ende eines Bereichs (Zeit/Ort) an. Beispiel: Ich arbeite von 9 bis 5. Ich fahre von Tokio nach Osaka.",
+    ko: "조사 「から~まで」: 범위의 시작과 끝(시간·장소)을 나타냄. 예: 9시부터 5시까지 일해요. 도쿄에서 오사카까지 가요."
+  },
+  "から": {
+    ja: "【「から」】意味：時間・場所などの始まりを表す。例：9時から始まります。",
+    en: "Particle kara: indicates the starting point (time/place).",
+    de: "Partikel kara: zeigt den Anfang (Zeit/Ort) an.",
+    ko: "조사 から: 시간·장소의 시작을 나타냄."
+  }, 
+  "まで": {
+    ja: "【「まで」】意味：時間・場所などの終わりを表す。例：5時まで働きます。",
+    en: "Particle made: indicates the end point (time/place).",
+    de: "Partikel made: zeigt das Ende (Zeit/Ort) an.",
+    ko: "조사 まで: 시간·장소의 끝을 나타냄."
+  },    
+  "の": {
+    ja: "【助詞「の」】意味：名詞と名詞をつなぎ、所有・所属・関係・説明を表す。例：わたしの本。日本の文化。",
+    en: "Particle \"no\": connects nouns to show possession, affiliation, or description. Example: my book. Japanese culture.",
+    de: "Partikel „no“: verbindet Nomen und zeigt Besitz, Zugehörigkeit oder nähere Bestimmung. Beispiel: mein Buch. die japanische Kultur.",
+    ko: "조사 「の」: 명사와 명사를 이어 소유·소속·관계를 나타냄. 예: 나의 책. 일본의 문화."
+  },
+  "と": {
+    ja: "【助詞「と」】意味：いっしょにする相手を表す／物や人を並べて示す／言った内容を引用する。例：友だちと行きます。りんごとみかん。「行きます」と言いました。",
+    en: "Particle \"to\": indicates doing something together, lists items, or quotes speech. Example: I go with a friend. Apples and oranges. He said, “I will go.”",
+    de: "Partikel „to“: zeigt Begleitung, Aufzählung oder Zitat an. Beispiel: Ich gehe mit einem Freund. Äpfel und Orangen. Er sagte: „Ich gehe.“",
+    ko: "조사 「と」: 함께하는 대상, 나열, 말한 내용을 인용할 때 사용. 예: 친구와 가요. 사과와 귤. “간다”고 말했어요."
+  },
+  "も": {
+    ja: "【助詞「も」】意味：前の内容に加えて「同じだ」「追加だ」という気持ちを表す。例：わたしも行きます。水もあります。",
+    en: "Particle \"mo\": means \"also\" or \"too\", adding something as the same or additional. Example: I will go too. There is water as well.",
+    de: "Partikel „mo“: bedeutet „auch“ und fügt etwas Gleiches oder Zusätzliches hinzu. Beispiel: Ich gehe auch. Es gibt auch Wasser.",
+    ko: "조사 「も」: 앞의 내용에 더해 ‘도/역시’를 나타냄. 예: 나도 가요. 물도 있어요."
+  },
+  "や": {
+    ja: "【助詞「や」】意味：いくつかの物や人を例として挙げる（全部ではない）。例：りんごやバナナを買いました。",
+    en: "Particle \"ya\": lists examples of items or people (not an exhaustive list). Example: I bought apples and bananas.",
+    de: "Partikel „ya“: nennt Beispiele mehrerer Dinge oder Personen (nicht vollständig). Beispiel: Ich habe Äpfel und Bananen gekauft.",
+    ko: "조사 「や」: 여러 항목을 예로 들어 나열함(전부는 아님). 예: 사과나 바나나를 샀어요."
+  },
+  "ましょうか": {
+    ja: "【ましょうか】形：V（ます形）＋ましょうか。意味：相手に申し出る言い方。例：手伝いましょうか。",
+    en: "Form: Verb (masu-stem) + mashou ka. Meaning: A polite way to offer help.",
+    de: "Form: Verb (Masu-Stamm) + mashou ka. Bedeutung: Höfliches Angebot.",
+    ko: "형태: 동사(ます형 어간)＋ましょうか. 의미: 제안할 때 쓰는 표현."
+  },
+  "なければいけません": {
+    ja: "【なければいけません】形：V（ない形）＋なければいけません。意味：しなければならない。例：宿題をしなければいけません。",
+    en: "Form: Verb (nai-form) + nakereba ikemasen. Meaning: must do.",
+    de: "Form: Verb (nai-Form) + nakereba ikemasen. Bedeutung: müssen.",
+    ko: "형태: 동사(ない형)＋なければいけません. 의미: 반드시 해야 함."
+  },
+  "てはいけません": {
+    ja: "【てはいけません】形：V（て形）＋はいけません。意味：してはいけない。例：ここで食べてはいけません。",
+    en: "Form: Verb (te-form) + wa ikemasen. Meaning: must not do.",
+    de: "Form: Verb (te-Form) + wa ikemasen. Bedeutung: nicht erlaubt.",
+    ko: "형태: 동사(て형)＋はいけません. 의미: 하면 안 됨."
+  },
+  "てもいいですか": {
+    ja: "【〜てもいいですか】形：V（て形）＋もいいですか。意味：相手に許可を求める言い方。例：ここに座ってもいいですか。",
+    en: "Form: Verb (te-form) + mo ii desu ka. Meaning: asking for permission. Example: May I sit here?",
+    de: "Form: Verb (te-Form) + mo ii desu ka. Bedeutung: um Erlaubnis bitten. Beispiel: Darf ich mich hier setzen?",
+    ko: "형태: 동사(て형)＋もいいですか. 의미: 허락을 구하는 표현. 예: 여기에 앉아도 될까요?"
+  },
+  "なくてもいいですか": {
+    ja: "【なくてもいいですか】形：V（ない形）＋なくてもいいですか。意味：しなくてもよいか聞く。例：明日は行かなくてもいいですか。",
+    en: "Form: Verb (nai-form) + nakutemo ii desu ka. Meaning: asking if something is not necessary.",
+    de: "Form: Verb (nai-Form) + nakutemo ii desu ka. Bedeutung: fragen, ob etwas nicht nötig ist.",
+    ko: "형태: 동사(ない형)＋なくてもいいですか. 의미: 안 해도 되는지 묻는 표현."
+  },
+  "前に": {
+   ja: "【〜前に】形：V（辞書形）＋前に。意味：ある動作の前。例：ねる前に、はをみがきます。",
+   en: "Form: Verb (dictionary form) + mae ni. Meaning: before doing something.",
+   de: "Form: Verb (Wörterbuchform) + mae ni. Bedeutung: bevor man etwas tut.",
+   ko: "형태: 동사(사전형)＋前に. 의미: 어떤 행동을 하기 전에."
+  },
+  "あとで": {
+   ja: "【〜あとで】形：V（た形）＋後で。意味：ある動作の後。例：食べた後で、勉強します。",
+   en: "Form: Verb (ta-form) + ato de. Meaning: after doing something.",
+   de: "Form: Verb (ta-Form) + ato de. Bedeutung: nachdem man etwas getan hat.",
+   ko: "형태: 동사(た형)＋あとで. 의미: 어떤 행동을 한 뒤에."
+  },
+  "たい": {
+   ja: "【〜たい】形：V（ます形のますを取る）＋たい。意味：自分のしたい気持ち。例：日本に行きたいです。",
+   en: "Form: Verb (masu-stem) + tai. Meaning: expressing what the speaker wants to do.",
+   de: "Form: Verb (Masu-Stamm) + tai. Bedeutung: Wunsch des Sprechers.",
+   ko: "형태: 동사(ます형 어간)＋たい. 의미: 말하는 사람의 희망."
+  },
+  "てから": {
+   ja: "【〜てから】形：V（て形）＋から。意味：ある動作が終わったあとで、次の動作をすることを表す。例：ごはんを食べてから、勉強します。",
+   en: "Form: Verb (te-form) + kara. Meaning: doing something after another action is completed. Example: I study after I eat.",
+   de: "Form: Verb (te-Form) + kara. Bedeutung: etwas tun, nachdem eine andere Handlung abgeschlossen ist. Beispiel: Ich lerne, nachdem ich gegessen habe.",
+   ko: "형태: 동사(て형)＋から. 의미: 어떤 행동을 한 뒤에 다음 행동을 함. 예: 밥을 먹고 나서 공부합니다."
+  },
+  "ている": {
+   ja: "【〜ている】形：V（て形）＋いる。意味：今している／続いている状態。例：今、勉強しています。",
+   en: "Form: Verb (te-form) + imasu. Meaning: ongoing action or continuing state.",
+   de: "Form: Verb (te-Form) + imasu. Bedeutung: andauernde Handlung oder Zustand.",
+   ko: "형태: 동사(て형)＋います. 의미: 진행 중이거나 계속되는 상태."
+  },
+  "ながら": {
+   ja: "【〜ながら】形：V（ます形のますを取る）＋ながら。意味：2つの動作を同時。例：音楽を聞きながら勉強します。",
+   en: "Form: Verb (masu-stem) + nagara. Meaning: doing two actions at the same time.",
+   de: "Form: Verb (Masu-Stamm) + nagara. Bedeutung: zwei Handlungen gleichzeitig.",
+   ko: "형태: 동사(ます형 어간)＋ながら. 의미: 두 가지 행동을 동시에 함."
+  },
+  "ことがある": {
+   ja: "【〜ことがある】形：V（た形）＋ことがある。意味：過去の経験があることを表す。例：日本に行ったことがあります。",
+   en: "Form: Verb (ta-form) + koto ga aru. Meaning: to talk about past experiences. Example: I have been to Japan.",
+   de: "Form: Verb (ta-Form) + koto ga aru. Bedeutung: über frühere Erfahrungen sprechen. Beispiel: Ich war schon einmal in Japan.",
+   ko: "형태: 동사(た형)＋ことがある. 의미: 과거의 경험을 나타냄. 예: 일본에 가본 적이 있습니다."
+  },
+  "ことができる": {
+   ja: "【〜ことができる】形：V（辞書形）＋ことができる。意味：能力や可能性を表す。例：日本語を話すことができます。",
+   en: "Form: Verb (dictionary form) + koto ga dekiru. Meaning: expressing ability or possibility. Example: I can speak Japanese.",
+   de: "Form: Verb (Wörterbuchform) + koto ga dekiru. Bedeutung: Fähigkeit oder Möglichkeit ausdrücken. Beispiel: Ich kann Japanisch sprechen.",
+   ko: "형태: 동사(사전형)＋ことができる. 의미: 능력이나 가능성을 나타냄. 예: 일본어를 할 수 있습니다."
+  },
+  "たほうがいい": {
+   ja: "【〜たほうがいい】形：V（た形）＋ほうがいい。意味：助言・勧めを表す言い方。例：早く寝たほうがいいです。",
+   en: "Form: Verb (ta-form) + hou ga ii desu. Meaning: giving advice or a recommendation. Example: You should go to bed early.",
+   de: "Form: Verb (ta-Form) + hou ga ii desu. Bedeutung: Ratschlag oder Empfehlung. Beispiel: Du solltest früh schlafen gehen.",
+   ko: "형태: 동사(た형)＋ほうがいいです. 의미: 조언이나 권유를 나타냄. 예: 일찍 자는 게 좋아요." 
+  },
+  "たり": {
+   ja: "【たり】形：V（た形）＋り、V（た形）＋りします。意味：いくつかの動作や状態を例として挙げる言い方。例：週末は映画を見たり、買い物をしたりします。",
+   en: "Form: Verb (ta-form) + ri, Verb (ta-form) + ri shimasu. Meaning: listing example actions or states. Example: On weekends, I watch movies and go shopping.",
+   de: "Form: Verb (ta-Form) + ri, Verb (ta-Form) + ri shimasu. Bedeutung: beispielhaft mehrere Handlungen nennen. Beispiel: Am Wochenende schaue ich Filme und gehe einkaufen.",
+   ko: "형태: 동사(た형)＋り, 동사(た형)＋り 합니다. 의미: 여러 행동을 예로 들어 나열. 예: 주말에는 영화를 보거나 쇼핑을 합니다."
+  },
+  "てください": {
+   ja: "【〜てください】形：V（て形）＋ください。意味：相手に何かを依頼する丁寧な言い方。例：これをください。ドアを開けてください。",
+   en: "Form: Verb (te-form) + kudasai. Meaning: a polite request. Example: Please give me this. Please open the door.",
+   de: "Form: Verb (te-Form) + kudasai. Bedeutung: höfliche Bitte. Beispiel: Bitte geben Sie mir das. Bitte öffnen Sie die Tür.",
+   ko: "형태: 동사(て형)＋ください. 의미: 정중한 부탁 표현. 예: 이것을 주세요. 문을 열어 주세요."
+  },
+  "ないでください": {
+   ja: "【〜ないでください】形：V（ない形）＋でください。意味：相手にやめてほしいことを丁寧に伝える言い方。例：ここで写真を撮らないでください。",
+   en: "Form: Verb (nai-form) + de kudasai. Meaning: politely asking someone not to do something. Example: Please do not take photos here.",
+   de: "Form: Verb (nai-Form) + de kudasai. Bedeutung: höflich bitten, etwas nicht zu tun. Beispiel: Bitte machen Sie hier keine Fotos.",
+   ko: "형태: 동사(ない형)＋でください. 의미: 하지 말아 달라고 정중히 요청. 예: 여기서 사진을 찍지 말아 주세요."
+  }, 
+  "すぎる": {
+   ja: "【〜すぎる】形：V（ます形のますを取る）＋すぎる／い形容詞（い→く）＋すぎる／な形容詞＋すぎる。意味：程度が度をこえていることを表す。例：食べすぎました。高すぎます。",
+   en: "Form: Verb (masu-stem) + sugiru / i-adjective (i→ku) + sugiru / na-adjective + sugiru. Meaning: expressing excess. Example: I ate too much. It’s too expensive.",
+   de: "Form: Verb (Masu-Stamm) + sugiru / i-Adjektiv (i→ku) + sugiru / na-Adjektiv + sugiru. Bedeutung: Übermaß ausdrücken. Beispiel: Ich habe zu viel gegessen. Es ist zu teuer.",
+   ko: "형태: 동사(ます형 어간)＋すぎる / い형용사(い→く)＋すぎる / な형용사＋すぎる. 의미: 정도가 지나침. 예: 너무 많이 먹었어요. 너무 비싸요."
+  }, 
+  "でしょう": {
+   ja: "【〜でしょう】形：普通形＋でしょう。意味：話し手の推量や、相手の同意をやわらかく求める言い方。例：明日は雨でしょう。きれいでしょう？",
+   en: "Form: Plain form + deshou. Meaning: expressing probability or softly seeking agreement. Example: It will probably rain tomorrow. Nice, isn’t it?",
+   de: "Form: Grundform + deshou. Bedeutung: Vermutung ausdrücken oder Zustimmung sanft einholen. Beispiel: Morgen wird es wohl regnen. Schön, oder?",
+   ko: "형태: 보통형＋でしょう. 의미: 추측을 나타내거나 상대의 동의를 부드럽게 구함. 예: 내일은 비가 오겠지요? 예쁘죠?"
+  },
+  "よてい": {
+   ja: "【〜よてい】形：N＋の＋よていです／V（辞書形）＋よていです。意味：あらかじめ決まっている計画を表す。例：来週、日本へ行くよていです。",
+   en: "Form: N + no + yotei desu / Verb (dictionary form) + yotei desu. Meaning: a planned schedule or intention. Example: I plan to go to Japan next week.",
+   de: "Form: N + no + yotei desu / Verb (Wörterbuchform) + yotei desu. Bedeutung: fest geplanter Termin oder Plan. Beispiel: Ich habe vor, nächste Woche nach Japan zu fahren.",
+   ko: "형태: 명사＋の＋よていです / 동사(사전형)＋よていです. 의미: 미리 정해진 계획. 예: 다음 주에 일본에 갈 예정입니다."
+  },
+  "つもり": {
+   ja: "【〜つもり】形：V（辞書形／ない形）＋つもりです。意味：話し手の意志や予定を表す。例：明日、早く起きるつもりです。",
+   en: "Form: Verb (dictionary form / nai-form) + tsumori desu. Meaning: expressing the speaker’s intention or plan. Example: I intend to wake up early tomorrow.",
+   de: "Form: Verb (Wörterbuchform / nai-Form) + tsumori desu. Bedeutung: Absicht oder Plan des Sprechers. Beispiel: Ich habe vor, morgen früh aufzustehen.",
+   ko: "형태: 동사(사전형/ない형)＋つもり입니다. 의미: 말하는 사람의 의도나 계획. 예: 내일 일찍 일어날 생각입니다."
+  },
+  "できる": {
+  ja: "【〜できる】形：名詞＋が＋できる。意味：能力や特技があることを表す。例：ピアノができます。スキーができます。",
+  en: "Form: noun + ga + dekiru. Meaning: expresses ability or skill. Example: I can play the piano. I can ski.",
+  de: "Form: Nomen + ga + dekiru. Bedeutung: drückt Fähigkeit oder Können aus. Beispiel: Ich kann Klavier spielen. Ich kann Ski fahren.",
+  ko: "형태: 명사＋が＋できる. 의미: 능력이나 특기가 있음을 나타냄. 예: 피아노를 칠 수 있어요. 스키를 탈 수 있어요."
+ }
+};
+const APPLIED_REVIEW_TEXT = {
+  ja: {
+    title: "ここまでの振り返り",
+    score: (n) => `正解数：${n} / 3`,
+    c3: "よくできている！\nこの文法、かなり身についてきています。",
+    c2: "だいぶいいぞ！\nあと少しで安定しそうです。",
+    c1: "もう少し復習してみよう。\nポイントを見直すとよくなります。",
+    next3: "次の3問へ"   // ←★追加
+  },
+  en: {
+    title: "Review so far",
+    score: (n) => `Correct: ${n} / 3`,
+    c3: "Great job!\nYou're getting solid with this grammar.",
+    c2: "Pretty good!\nJust a bit more to stabilize.",
+    c1: "Let’s review a bit more.\nRecheck the key points.",
+    next3: "Next 3 questions"
+  },
+  de: {
+    title: "Zwischenbilanz",
+    score: (n) => `Richtig: ${n} / 3`,
+    c3: "Sehr gut!\nDiese Grammatik sitzt schon gut.",
+    c2: "Schon ziemlich gut!\nFast stabil.",
+    c1: "Noch etwas wiederholen.\nDie Kernpunkte prüfen.",
+    next3: "Nächste 3 Fragen"
+  },
+  ko: {
+    title: "지금까지의 복습",
+    score: (n) => `정답 수: ${n} / 3`,
+    c3: "아주 좋아요. 이 문법은 잘 이해하고 있습니다.",
+    c2: "대체로 괜찮아요. 조금만 더 복습해 봅시다.",
+    c1: "아직 조금 헷갈릴 수 있어요. 예문을 다시 확인해 보세요.",
+    next3: "다음 3문제"
+  }
+};
+
+/** =========================
+ *  状態
+ * ========================= */
+let questions = [];
+let current = 0;
+let selectedIndex = null;
+let currentExplanationQuestion = null;
+let currentExplanationBox = null;
+
+let isAppliedReviewScreen = false;
+let appliedReviewData = null;  
+// 診断用：回答ログ
+// {id, correct, grammar_group, grammar_item, type}
+let results = [];
+
+window.practiceMode = false;
+
+/** =========================
+ *  DOM
+ * ========================= */
+// ★追加：同じ文法グループが連続しないようにシャッフル
+function shuffleQuestionsAvoidSameGroup(list){
+  if(!Array.isArray(list) || list.length <= 1) return;
+
+  // 通常シャッフル
+  for(let i=list.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [list[i],list[j]]=[list[j],list[i]];
+  }
+
+  // 連続回避
+  for(let i=1;i<list.length;i++){
+    if(list[i].grammar_group === list[i-1].grammar_group){
+      for(let j=i+1;j<list.length;j++){
+        if(list[j].grammar_group !== list[i-1].grammar_group){
+          [list[i],list[j]]=[list[j],list[i]];
+          break;
+        }
+      }
+    }
+  }
+}
+// ★追加：選択肢をシャッフルし、answer(index)を追従させる
+
+// ★追加：選択肢をシャッフルし、answer(index)を追従させる
+
+// ★選択肢＋答えシャッフル用
+function shuffleChoicesWithAnswer(q){
+  const pairs = (q?.choices ?? []).map((text, idx)=>({ text, idx }));
+
+  for(let i=pairs.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+  }
+
+  return {
+    choices: pairs.map(p=>p.text),
+    answer: pairs.findIndex(p=>p.idx === q?.answer)
+  };
+}
+
+const el = (id)=>document.getElementById(id);
+const qEl = el("q");
+const choicesEl = el("choices");
+const nextBtn = el("next");
+const progressEl = el("progress");
+const statusEl = el("status");
+const readyEl = el("readyStatus");
+const modePill = el("modePill");
+const groupPill = el("groupPill");
+const typePill = el("typePill");
+const testView = el("testView");
+const resultView = el("resultView");
+
+function pick40Questions(allQuestions){
+  const pool = allQuestions.filter(q => q && q.question);
+
+  for(let i = pool.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  return pool.slice(0, 40);
+}
+
+/** =========================
+ *  読み込み
+ * ========================= */
+
+ fetch("questions_all.json")
+  .then(r=>{
+    if(!r.ok) throw new Error("Fetch failed: " + r.status);
+    return r.json();
+  })
+  .then(data=>{
+    const allQuestions = data.questions ?? data;
+    if(!Array.isArray(allQuestions) || allQuestions.length === 0) {
+      throw new Error("questions_all.json の形式が不正（questions配列がない）");
+    }
+
+    // ★ ここを追加
+    window.allQuestions = allQuestions;
+    window.allQuestionsLoaded = true;
+    questions = pick40Questions(allQuestions);
+    console.log("★★ CHECK questions ★★", questions.length, questions);
+
+
+    console.log(
+      questions.reduce((m,q)=>{
+       (q.tags?.grammar||[]).forEach(g=>m[g]=(m[g]||0)+1);
+       return m;
+   },{})
+ );
+
+  // 安全チェック（必須）
+  // if (questions.length !== 40) {
+  //  throw new Error("抽出結果が40問ではありません: " + questions.length);
+  //
+  shuffleQuestionsAvoidSameGroup(questions);
+
+    document.getElementById("readyStatus").textContent = "準備OK / Ready";
+
+    readyEl.textContent = "準備OK / Ready"; 
+    // if (!window.practiceMode) {
+   //   renderQuestion();
+   // }
+
+  })
+  .catch(e=>{
+    statusEl.innerHTML = '<span class="bad">JSON読めてない（Console参照）</span>';
+    qEl.textContent = "エラー：questions_40.json を読めません";
+    console.error(e);
+  });
+  
+  function startPractice() {
+
+    window.practiceMode = true;
+    modePill.textContent = "強化練習";
+    current = 0;
+    results = [];
+
+    if (!window.practiceConfig) {
+     alert("設定が見つかりません");
+    return;
+ }
+  const PRACTICE_COUNT = 10; // ★ 強化練習は常に10問
+  
+
+  const { groups } = window.practiceConfig;
+
+  fetch ("questions_all.json")
+    .then(r => {
+      if (!r.ok) throw new Error("Fetch failed");
+      return r.json();
+    })
+    .then(data => {
+      const all = data.questions ?? data;
+      if (!Array.isArray(all) || all.length === 0) {
+        throw new Error("問題データが空です");
+      }
+
+      let pool = all.filter(q => {
+        const g = q?.grammar_group;
+        return g && groups.includes(g);
+      });
+
+      if (pool.length === 0) {
+        alert("選んだカテゴリーの問題がありません");
+        return;
+      }
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const actualCount = Math.min(PRACTICE_COUNT, pool.length);
+      questions = pool.slice(0, actualCount);
+
+      current = 0;
+      selectedIndex = null;
+      results = [];
+
+      document.getElementById("practiceSetup").style.display = "none";
+      testView.style.display = "block";
+      resultView.style.display = "none";
+
+      shuffleQuestionsAvoidSameGroup(questions);
+      renderQuestion();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("強化練習の開始に失敗しました");
+    });
+}
+
+/** =========================
+ *  表示：問題
+ * ========================= */
+ function renderQuestion() {
+
+  // ★応用練習中は通常問題を描画しない（混線防止）
+  if (window.practiceMode === "APPLIED") return;
+// ★ ②-B 安全装置（最重要）
+  if (!questions || !questions[current]) {
+  console.warn("Invalid question state", { questions, current });
+  return;
+}
+
+nextBtn.style.display = "inline-block";
+nextBtn.disabled = true;
+
+console.log("renderQuestion called");
+
+statusEl.textContent = "";
+selectedIndex = null;
+nextBtn.disabled = true;
+
+const q = questions[current];
+
+// 進捗表示
+progressEl.textContent = `${current + 1} / ${questions.length} questions`;
+
+// 文法グループ表示
+const gg = q.grammar_group ?? "UNCLASSIFIED";
+if (groupPill) {
+  groupPill.textContent =
+    DIAG_TEXT[currentLang]?.groups?.[gg] ?? gg;
+}
+
+
+  // 問題タイプ表示
+  const t = q.type ?? "MC";
+  typePill.textContent =
+    t === "STAR"
+      ? "★並び替え / Word Order"
+      : "四択 / Multiple Choice";
+
+  // 問題文
+  qEl.innerHTML = (q.question ?? "（問題文なし）").replace(
+    /（\s*）/g,
+    '<span class="blank">（　　）</span>'
+  );
+
+  // =========================
+  // ★ 選択肢＋答えシャッフル（※ここだけ）
+  // =========================
+  const shuffled = shuffleChoicesWithAnswer(q);
+  q._shuffledAnswer = shuffled.answer;
+
+  // 選択肢描画（※1回だけ）
+  choicesEl.innerHTML = "";
+
+  shuffled.choices.forEach((text, idx) => {
+    const d = document.createElement("div");
+    d.className = "choice";
+    d.textContent = text;
+
+    d.onclick = () => {
+      document
+        .querySelectorAll(".choice")
+        .forEach(x => x.classList.remove("selected"));
+      d.classList.add("selected");
+      selectedIndex = idx;
+      nextBtn.disabled = false;
+    };
+
+    choicesEl.appendChild(d);
+  });
+}
+
+
+/** =========================
+ *  解答保存 → 次へ
+ * ========================= */
+ function mainNextHandler() {
+
+    // ★応用練習中は通常の next 処理をしない（混線防止）
+    if (window.practiceMode === "APPLIED") return;
+
+    if (selectedIndex === null) return;
+
+    const q = questions[current];
+    const correct = (selectedIndex === (q._shuffledAnswer ?? q.answer));
+
+  results.push({
+    id: q.id ?? `Q_${current+1}`,
+    correct,
+    grammar_group: q.grammar_group ?? "UNCLASSIFIED",
+    grammar_item: q.grammar_item ?? q.intent ?? "（不明）",
+    type: q.type ?? "MC"
+  });
+
+  current++;
+
+  if (current < questions.length) {
+    renderQuestion();
+  } else {
+    if (window.practiceMode === true) {
+      showPracticeResult();
+    } else {
+      showDiagnosis();
+    }
+  }
+}
+
+// ★ これを必ず書く
+nextBtn.onclick = mainNextHandler;
+
+/** =========================
+ *  診断画面（あなたの仕様どおり）
+ * ========================= */
+/** =========================
+ *  診断画面（レベルチェック専用）
+ * ========================= */
+ function showDiagnosis(){
+  window.lastDiagnosisResult = true;
+  const T = DIAG_TEXT[currentLang] ?? DIAG_TEXT.ja;
+
+  modePill.textContent = T.result;
+  testView.style.display = "none";
+  resultView.style.display = "block";
+
+  const total = results.length;
+  const correctCount = results.filter(r=>r.correct).length;
+  const rate = Math.round((correctCount / total) * 100);
+  const overallColor = rate >= 65 ? "high" : rate >= 30 ? "mid" : "low";
+  const judge = OVERALL_JUDGE(rate);
+
+  // グループ集計
+  const groupStat = {};
+  GROUP_ORDER.forEach(g=> groupStat[g] = { total:0, correct:0 });
+
+  results.forEach(r=>{
+    if(!groupStat[r.grammar_group]) groupStat[r.grammar_group] = { total:0, correct:0 };
+    groupStat[r.grammar_group].total++;
+    if(r.correct) groupStat[r.grammar_group].correct++;
+  });
+
+  // 間違い抽出（文法アイテム別）
+  const wrong = results.filter(r=>!r.correct);
+  const wrongByItem = {};
+  wrong.forEach(r=>{
+    const key = r.grammar_item || "（不明）";
+    wrongByItem[key] = (wrongByItem[key] || 0) + 1;
+  });
+  let judgeMark = "";
+  if (judge.cls === "high") judgeMark = "🌸 ";
+  else if (judge.cls === "mid") judgeMark = "⚠️ ";
+  else if (judge.cls === "low") judgeMark = "❗ ";
+  // --- 出力 ---
+  let html = `
+    <div class="card">
+      <div class="row" style="justify-content:space-between;">
+        <h2 class="h2">${T.result}</h2>
+        <span class="pill">${T.passline}</span>
+      </div>
+
+      <div class="kpi">${correctCount} / ${total}（${rate}%）</div>
+      <div class="score-bar">
+        <div class="score-bar-fill ${overallColor}" style="width:${rate}%"></div>
+      </div>
+
+      <p class="${judge.cls}" style="font-weight:700;margin:6px 0 2px;">
+        ${judgeMark}${T.judge[judge.cls]}
+      </p>
+      <p style="margin:0;">
+        ${T.judge[judge.cls + "Msg"]}
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 class="h2">${T.grammarLevel}</h2>
+      <p class="muted" style="margin:0 0 6px;">${T.legend}</p>
+
+      <div class="cat-bars">
+        ${
+          GROUP_ORDER.map(g=>{
+            const st = groupStat[g];
+            if(!st || st.total === 0) return "";
+            const gr = Math.round((st.correct / st.total) * 100);
+            const cls = gr >= 65 ? "high" : gr >= 30 ? "mid" : "low";
+            const label = T?.groups?.[g] ?? g;
+
+            return `
+              <div class="cat-item">
+                <span>${label}</span>
+                <div class="bar"><div class="fill ${cls}" style="width:${gr}%"></div></div>
+                <span class="pct">${T.rate(gr, st.correct, st.total)}</span>
+              </div>
+            `;
+          }).join("")
+        }
+      </div>
+
+      <div class="weak-summary">
+       
+        <p class="level-desc">
+          ${
+            rate >= 80 ? T.levelWord.high
+            : rate >= 50 ? T.levelWord.mid
+            : rate >= 30 ? T.levelWord.low
+            : T.levelWord.veryLow
+          }
+        </p>
+      </div>
+    </div>
+  `;
+
+  // グループ別の説明（100%は出さない）
+  GROUP_ORDER.forEach(g=>{
+    const st = groupStat[g];
+    if(!st || st.total === 0) return;
+
+    const gr = Math.round((st.correct / st.total) * 100);
+    const level =
+      T?.levelWord
+        ? (gr >= 65 ? T.levelWord.high : gr >= 30 ? T.levelWord.mid : T.levelWord.low)
+        : LEVEL_WORD(gr);
+
+    const label = T?.groups?.[g] ?? g;
+
+    html += `
+      <div style="margin:12px 0;">
+        <h3 class="h3">${label}</h3>
+        <p style="margin:2px 0;">${T.score}：${st.correct} / ${st.total}</p>
+        <p style="margin:2px 0;">${T.levelLabel}：${level}</p>
+    `;
+
+    if (gr !== 100) {
+      const hint =
+        DIAG_TEXT[currentLang]?.groupHint?.[g]?.[currentLang]
+        ?? DIAG_TEXT[currentLang]?.groupHint?.[g]?.ja
+        ?? "";
+
+      if (hint) html += `<p style="margin:6px 0 0;">${hint}</p>`;
+    }
+
+    html += `</div>`;
+  });
+
+  // STEP C：間違えた文法だけ個別説明（あるものだけ）
+  if (wrong.length > 0) {
+    html += `
+      <div class="card">
+        <h2 class="h2">${T.review}</h2>
+    `;
+
+    const items = Object.entries(wrongByItem).sort((a,b)=>b[1]-a[1]);
+    items.forEach(([item, cnt])=>{
+      const explRaw = GRAMMAR_EXPLAIN[item];
+      const expl =
+        typeof explRaw === "string"
+          ? explRaw
+          : (explRaw?.[currentLang] ?? explRaw?.ja ?? "");
+
+      if (!expl) return;
+
+      html += `
+        <div class="card" style="border-color:#eee;background:#fafafa;">
+          <div class="row" style="justify-content:space-between;">
+            <div style="font-weight:700;">${item}</div>
+            <div class="pill">${T.miss}：${cnt}</div>
+          </div>
+          <p style="margin:8px 0 0;">${expl}</p>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+  } else {
+    html += `
+      <div class="card">
+        <h2 class="h2">${T.review}</h2>
+        <p style="margin:0;" class="good">${T.perfect ?? "Perfect!"}</p>
+      </div>
+    `;
+  }
+
+  // 再スタート
+  html += `
+    <div class="card">
+      <button id="restart">${T.retry}</button>
+      <div class="muted" style="margin-top:8px;font-size:12px;">
+        ${T.noteShuffle}
+      </div>
+    </div>
+  `;
+
+  resultView.innerHTML = html;
+
+  // ★ restart は showDiagnosis の中で必ず紐付ける（外に出すと壊れる）
+  const restartBtn = document.getElementById("restart");
+  if (restartBtn) {
+    restartBtn.onclick = ()=>{
+      results = [];
+      current = 0;
+      selectedIndex = null;
+
+      const T2 = DIAG_TEXT[currentLang] ?? DIAG_TEXT.ja;
+      modePill.textContent = T2.test;
+
+      testView.style.display = "block";
+      resultView.style.display = "none";
+      renderQuestion();
+    };
+  }
+}
+
+
+/** =========================
+ *  強化練習の結果（強化練習専用）
+ * ========================= */
+ function showPracticeResult() {
+  testView.style.display = "none";
+  resultView.style.display = "block";
+
+  const T = DIAG_TEXT[currentLang] ?? DIAG_TEXT.ja;
+
+  const total = results.length;
+  const correctCount = results.filter(r => r.correct).length;
+
+  const judge = OVERALL_JUDGE(
+  total === 0 ? 0 : Math.round((correctCount / total) * 100)
+ );
+  const wrong = results.filter(r => !r.correct);
+  const wrongByItem = {};
+  wrong.forEach(r => {
+    const key = r.grammar_item || "（不明）";
+    wrongByItem[key] = (wrongByItem[key] || 0) + 1;
+  });
+
+  let html = `
+   <div class="card">
+     <h2 class="h2">${T.result}</h2>
+     <div class="kpi">${correctCount} / ${total}</div>
+
+    <div class="overall ${judge.cls}">
+      ${T.judge?.[judge.key + "Msg"]
+        ?? DIAG_TEXT.ja?.judge?.[judge.key + "Msg"]
+        ?? ""}
+    </div>
+
+    <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:10px;">
+      <button id="retryPractice">もう一度</button>
+    </div>
+  </div>
+`; 
+
+  if (wrong.length > 0) {
+    html += `
+     <div class="card">
+      ${T.wrongTitle ? `<h3 class="h3">${T.wrongTitle}</h3>` : ""}
+    `;
+
+    Object.entries(wrongByItem)
+      .sort((a,b)=>b[1]-a[1])
+      .forEach(([item, cnt]) => {
+
+        const explRaw = GRAMMAR_EXPLAIN[item];   // ★ これが抜けていた
+        const expl =
+         typeof explRaw === "string"
+         ? explRaw
+         : (explRaw?.[currentLang] ?? explRaw?.ja ?? "No grammar explanation");
+
+        html += `
+          <div class="card" style="border-color:#eee;background:#fafafa;">
+            <div class="row" style="justify-content:space-between;">
+              <div style="font-weight:700;">${item}</div>
+              <div class="pill">${T.miss}：${cnt}</div>
+            </div>
+            <p style="margin:8px 0 0;">
+              ${expl ? expl : T.noExplain}
+            </p>
+          </div>
+        `;
+      });
+
+    html += `</div>`;
+  }
+
+  resultView.innerHTML = html;
+
+  // バインドは「描画直後」に1回だけ
+  const retryBtn = document.getElementById("retryPractice");
+  if (retryBtn) {
+    retryBtn.onclick = () => {
+      resultView.style.display = "none";
+      document.getElementById("practiceSetup").style.display = "block";
+
+      setLang(currentLang); // ★ 応用練習の説明文に言語を当て直す
+   };
+  }
+}
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("goMain =", document.getElementById("goMain"));
+
+
+    const btnA = document.getElementById("btnA");
+    const toPage3 = document.getElementById("toPage3");
+    const page1 = document.getElementById("page1"); 
+    const page2 = document.getElementById("page2");
+    const menu = document.getElementById("menu");
+    const testView = document.getElementById("testView");
+    const btnC = document.getElementById("btnC");
+    
+    const goMainBtn = document.getElementById("goMain");
+if (goMainBtn) {
+  goMainBtn.onclick = () => {
+    page1.style.display = "block";
+    menu.style.display = "block";
+
+    page2.style.display = "none";
+    testView.style.display = "none";
+    document.getElementById("practiceSetup")?.style && (document.getElementById("practiceSetup").style.display = "none");
+    document.getElementById("resultView")?.style && (document.getElementById("resultView").style.display = "none");
+
+    // ③-A 状態を完全リセット（混在防止）
+    window.practiceMode = false;
+    window.practiceConfig = null;
+
+    // questions = [];
+    // results = [];
+
+    window.lastDiagnosisResult = false;
+    
+    current = 0;
+    selectedIndex = null;
+    
+    // ===== 応用練習の状態を完全リセット（★追加）=====
+    window.practiceMode = "NORMAL";
+    isAppliedReviewScreen = false;
+    appliedReviewData = null;
+    isAppliedFinished = false;
+    appliedIndex = 0;
+    appliedBlockCorrect = 0;
+
+    // next ボタンを通常用に戻す
+    nextBtn.onclick = mainNextHandler;
+    nextBtn.textContent = "次へ";
+  };
+}
+    // ① 1ページ目 → 2ページ目
+  if (btnA) {
+    btnA.onclick = () => {
+    page2.style.display = "block";
+    menu.style.display = "none";
+
+    // ★ 表示が確定した「次のフレーム」で言語を当て直す
+    requestAnimationFrame(() => {
+      setLang(currentLang);
+    });
+  };
+}
+  
+    // ② 2ページ目 → 3ページ目
+    if (toPage3) {
+    toPage3.onclick = () => {
+
+    // ① UI切替（今のまま）
+    window.practiceMode = false;
+    modePill.textContent = "レベルチェック";
+
+    page2.style.display = "none";
+    page1.style.display = "none";
+    testView.style.display = "block";
+    const rv = document.getElementById("resultView");
+    if (rv) rv.style.display = "none";
+
+    setLang(currentLang);
+
+    // ②-A ★ガード：問題データが未準備なら止める
+    if (!window.allQuestions || window.allQuestions.length === 0) {
+      alert("問題データを読み込み中です。もう一度お試しください。");
+      return;
+    }
+
+    // ②-A ★必ず「40問のレベルチェック問題」を作り直す（混ざり防止）
+    questions = pick40Questions(window.allQuestions);
+    shuffleQuestionsAvoidSameGroup(questions);
+
+    // ③ 初期化（混ざり防止の核心）
+    current = 0;
+    selectedIndex = null;
+    results = [];
+    
+
+    // ★ メインに戻るときは必ず通常モードに戻す（最重要）
+    window.practiceMode = "NORMAL";
+    isAppliedFinished = false;
+    appliedIndex = 0;
+
+    // ✅ 追加：応用練習が上書きした nextBtn を戻す
+    nextBtn.textContent = "次へ";
+    nextBtn.onclick = mainNextHandler;   // ← 下で作る関数名
+    isAppliedReviewScreen = false;
+
+    // ④ 1問目表示
+    renderQuestion();
+  };
+}
+
+    if (btnC) {
+      btnC.onclick = () => {
+      page1.style.display = "none";
+      page2.style.display = "none";
+      menu.style.display = "none";
+      testView.style.display = "none";
+
+      document.getElementById("practiceSetup").style.display = "block";
+      setLang(currentLang);
+  };
+}
+    // ===== 強化練習 START（修正版）=====
+
+// ① 既存の onclick / 既存リスナーの影響を確実に消す（壊さない保険）
+    let startBtn = document.getElementById("startPractice");
+    if (startBtn) {
+    const clean = startBtn.cloneNode(true);
+    startBtn.parentNode.replaceChild(clean, startBtn);
+    startBtn = clean;
+
+    startBtn.addEventListener("click", () => {
+
+    // ★ グループは「practiceGroup」だけを見る（practiceCount などを混ぜない）
+    const group = document.querySelector('#practiceSetup input[name="practiceGroup"]:checked')?.value;
+
+    if (!group) {
+      alert("カテゴリーを選んでください");
+      return;
+    }
+
+    window.practiceConfig = {
+      groups: [group],   // ← 1つだけ
+      count: 10
+    };
+
+    window.practiceMode = true;
+
+    document.getElementById("practiceSetup").style.display = "none";
+    document.getElementById("testView").style.display = "block";
+
+    startPractice();
+  });
+
+}
+
+// ===== 強化練習 END =====
+/* ★★★★★ ここから追加 ★★★★★ */
+
+/* ===== 応用練習 本体 ===== */
+ // ===== 応用練習 START =====
+// ===== 応用練習 END =====
+
+let appliedQuestions = [];
+let appliedIndex = 0;
+let appliedSelected = null;
+let appliedBlockCorrect = 0; // ★ 3問ブロック内の正解数
+
+let isAppliedBlockReview = false;
+let appliedReviewData = null; 
+let isAppliedFinished = false; // ← ★これ
+
+const APPLIED_FEEDBACK_TEXT = {
+  ja: {
+    correct: "正解。",
+    wrong: "不正解。",
+    explain: "文法の説明を見る",
+    next: "次へ"
+  },
+  en: {
+    correct: "Correct.",
+    wrong: "Incorrect.",
+    explain: "View grammar explanation",
+    next: "Next"
+  },
+  de: {
+    correct: "Richtig.",
+    wrong: "Falsch.",
+    explain: "Grammatikerklärung anzeigen",
+    next: "Weiter"
+  },
+  ko: {
+    correct: "정답입니다.",
+    wrong: "오답입니다.",
+    explain: "문법 설명 보기",
+    next: "다음"
+  }
+};
+
+const APPLIED_REVIEW_COMMENTS = {
+  3: {
+    ja: "よくできている。しっかり理解できています。",
+    en: "Well done. You understand this well.",
+    de: "Gut gemacht. Du hast das gut verstanden.",
+    ko: "아주 잘했어요. 잘 이해하고 있습니다."
+  },
+  2: {
+    ja: "だいぶいいです。あと少し確認してみましょう。",
+    en: "Pretty good. Let's check it once more.",
+    de: "Schon sehr gut. Schau es dir noch einmal kurz an.",
+    ko: "꽤 잘했어요. 조금만 더 확인해 봅시다."
+  },
+  1: {
+    ja: "もう少し復習してみましょう。\n例文を見直すと、理解しやすくなります。",
+    en: "Let's review a bit more.\nLooking at example sentences will help.",
+    de: "Lass uns noch etwas wiederholen.\nBeispiele helfen beim Verständnis.",
+    ko: "조금 더 복습해 봅시다.\n예문을 보면 이해하기 쉬워집니다."
+  },
+  0: {
+    ja: "大丈夫。今は確認のタイミング。\n焦らず一つずつ見ていきましょう。",
+    en: "It's okay. This is a good time to check.\nTake it one step at a time.",
+    de: "Kein Problem. Jetzt ist Zeit zum Überprüfen.\nGehe Schritt für Schritt vor.",
+    ko: "괜찮아요. 지금은 확인하는 단계예요.\n천천히 하나씩 봅시다."
+  }
+};
+
+// 20問に固定して読む
+function loadAppliedQuestions() {
+  return fetch("questions_applied.json")
+    .then(r => {
+      if (!r.ok) throw new Error("Fetch failed: " + r.status);
+      return r.json();
+    })
+    .then(data => {
+      const arr = data.questions ?? data;
+      appliedQuestions = Array.isArray(arr) ? arr.slice() : [];
+      appliedQuestions.sort(() => Math.random() - 0.5); // シャッフル
+      appliedQuestions = appliedQuestions.slice(0, 20); // ★ 20問
+      appliedIndex = 0;
+      appliedSelected = null;
+    });
+}
+function shuffleAppliedChoices(q) {
+  const pairs = (q?.choices ?? []).map((text, idx) => ({ text, idx }));
+
+  for (let i = pairs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+  }
+
+  return {
+    choices: pairs.map(p => p.text),
+    answer: pairs.findIndex(p => p.idx === q.answer)
+  };
+}
+function showAppliedQuestion() {
+  if (isAppliedFinished) return; // ★ここ// ★ 3問ごとの振り返り画面
+
+  // nextボタンを「次へ」として使用
+  nextBtn.style.display = "inline-block";
+  nextBtn.disabled = true; 
+  nextBtn.textContent =
+  (APPLIED_FEEDBACK_TEXT[currentLang] ?? APPLIED_FEEDBACK_TEXT.ja).next;
+
+  appliedSelected = null;
+
+
+  const q = appliedQuestions[appliedIndex];
+ 
+  // 終了
+  if (!q) {
+    isAppliedFinished = true;   // ★これ
+    appliedSelected = null; // ★これを追加
+
+   qEl.innerHTML =
+    "おつかれさまでした。<br>" +
+    "これでN5の文法練習はおわりました。<br>" +
+    "次は、N4の文法にチャレンジしてみましょう。<br><br>" +
+    "<span style='font-size:14px; color:#666;'>"
+    + "Well done!<br>"
+    + "You have finished the N5 grammar practice.<br>"
+    + "Next, let’s move on to N4 grammar practice."
+    + "</span>";
+
+  choicesEl.innerHTML = "";
+  nextBtn.style.display = "none";
+  progressEl.textContent = "20 / 20";
+  statusEl.textContent = "";
+  return;
+}
+// ★ ③ 終了でないときだけシャッフル
+const shuffled = shuffleAppliedChoices(q);
+  q._shuffledAnswer = shuffled.answer;
+  // 上部表示
+  modePill.textContent = "応用練習";
+  statusEl.textContent = "応用練習（20問）";
+  progressEl.textContent = `${appliedIndex + 1} / 20`;
+  groupPill.textContent = "—";
+  typePill.textContent = "三択 / Applied";
+
+  // 問題文
+  qEl.textContent = q.question ?? "（問題文なし）";
+
+  // 選択肢＋フィードバック領域
+  choicesEl.innerHTML = "";
+  const fb = document.createElement("div");
+  fb.id = "appliedFeedback";
+  fb.style.marginTop = "10px";
+  fb.style.fontSize = "14px";
+  fb.style.lineHeight = "1.6";
+  choicesEl.appendChild(fb);
+
+
+  // 選択肢描画
+  (shuffled.choices ?? []).forEach((c, i) => {
+    const d = document.createElement("div");
+    d.className = "choice";
+    d.textContent = c;
+
+    d.onclick = () => {
+     // 二重クリック防止
+     if (appliedSelected !== null) return;
+
+     document.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+     d.classList.add("selected");
+     appliedSelected = i;
+     nextBtn.disabled = false;
+
+     const correct = (i === q._shuffledAnswer);
+
+     // 正解数カウント（3問区切り用）
+     if (correct) 
+      appliedBlockCorrect++;
+
+     // ① 正誤表示だけ先に出す
+     const FT = APPLIED_FEEDBACK_TEXT[currentLang] ?? APPLIED_FEEDBACK_TEXT.ja;
+
+     fb.innerHTML = correct
+     ? `<div class="good" style="font-weight:700;">${FT.correct}</div>`
+     : `<div class="bad" style="font-weight:700;">${FT.wrong}</div>`;
+
+     // ② 文法説明ボタン（正解・不正解どちらでも表示）
+     const explainBtn= document.createElement("button");
+     explainBtn.textContent =
+       (APPLIED_FEEDBACK_TEXT[currentLang] ?? APPLIED_FEEDBACK_TEXT.ja).explain;
+
+     explainBtn.style.marginTop = "8px";
+     explainBtn.style.fontSize = "13px";
+
+     explainBtn.onclick = () => {
+       // すでに表示済みなら何もしない
+       if (explainBtn._shown) return;
+       explainBtn._shown = true;
+
+       const expl =
+         q.explanation?.[currentLang]
+         ?? q.explanation?.ja
+         ?? "（解説は未登録）";
+
+     const explBox = document.createElement("div");
+     explBox.style.marginTop = "8px";
+     explBox.style.whiteSpace = "pre-line";
+     explBox.style.fontSize = "14px";
+     explBox.textContent = expl;
+
+     currentExplanationQuestion = q;
+     currentExplanationBox = explBox;
+
+     fb.appendChild(explBox);
+     explainBtn.disabled = true; // 押せないだけにする
+  };
+
+  fb.appendChild(explainBtn);
+
+  // ③ 次へボタンは常に使える
+   nextBtn.textContent =
+   (APPLIED_FEEDBACK_TEXT[currentLang] ?? APPLIED_FEEDBACK_TEXT.ja).next;
+
+};
+
+    // fbより上に積むため、fbの前に挿入
+    choicesEl.insertBefore(d, fb);
+  });
+
+  // 次へ（1回だけバインド）
+ nextBtn.onclick = () => {
+    if (appliedSelected === null) return;
+
+    appliedIndex++;
+
+  // 3問終わった直後に振り返り（ただし最後の問題後は不要）
+  if (appliedIndex % 3 === 0 && appliedIndex < appliedQuestions.length) {
+   isAppliedReviewScreen = true;
+   appliedReviewData = { correct: appliedBlockCorrect };
+
+   appliedBlockCorrect = 0;
+   redrawAppliedReview();
+   return;
+}  
+
+    isAppliedReviewScreen = false;
+    showAppliedQuestion();
+  };
+}
+// ★これを必ず残す（1問目・2問目用）
+// ★ここが正解（showAppliedQuestion の直後）
+function redrawAppliedReview() {
+  if (!appliedReviewData) return;
+
+  const T = APPLIED_REVIEW_TEXT[currentLang] ?? APPLIED_REVIEW_TEXT.ja;
+  const n = appliedReviewData.correct;
+
+  qEl.textContent = T.title;
+  choicesEl.innerHTML = "";
+
+  choicesEl.insertAdjacentHTML(
+    "beforeend",
+    `<div style="font-weight:600; margin-bottom:8px;">${T.score(n)}</div>`
+  );
+
+  const msg =
+    n >= 3 ? T.c3 :
+    n === 2 ? T.c2 : T.c1;
+
+  const box = document.createElement("div");
+  box.style.whiteSpace = "pre-line";
+  box.style.fontSize = "16px";
+  box.style.lineHeight = "1.8";
+  box.textContent = msg;
+  choicesEl.appendChild(box);
+
+  nextBtn.textContent = T.next3;
+  nextBtn.disabled = false;
+
+  
+}
+
+// ★これを必ず残す（1問目・2問目用）  
+/* 応用練習ボタン */
+const startAppliedBtn = document.getElementById("startAppliedPractice");
+if (startAppliedBtn) {
+  startAppliedBtn.onclick = async () => {
+    document.getElementById("practiceSetup").style.display = "none";
+    document.getElementById("testView").style.display = "block";
+
+    window.practiceMode = "APPLIED";
+
+     // ★ 通常練習の状態を完全リセット（← 重要）
+    current = 0;
+    questions = [];
+    selectedIndex = null;
+    nextBtn.onclick = null;
+
+    testView.style.display = "block";
+    resultView.style.display = "none";
+
+    // 応用練習開始時に初期化（診断や強化練習と混ざらないように）
+    results = [];
+
+    await loadAppliedQuestions();
+    showAppliedQuestion();
+  };
+}
+ 
+/* ★★★★★ ここまで ★★★★★ */
+
+   // 🌐 言語ボタン（DOM後に設定）
+   // 
+document.getElementById("btn-ja").onclick = () => {
+  setLang("ja");
+  if (
+    window.practiceMode === "APPLIED" &&
+    isAppliedReviewScreen === true &&
+    appliedReviewData
+  ) {
+    redrawAppliedReview();
+  }
+};
+
+document.getElementById("btn-en").onclick = () => {
+  setLang("en");
+  if (
+    window.practiceMode === "APPLIED" &&
+    isAppliedReviewScreen === true &&
+    appliedReviewData
+  ) {
+    redrawAppliedReview();
+  }
+};
+
+document.getElementById("btn-de").onclick = () => {
+  setLang("de");
+  if (
+    window.practiceMode === "APPLIED" &&
+    isAppliedReviewScreen === true &&
+    appliedReviewData
+  ) {
+    redrawAppliedReview();
+  }   
+};
+
+document.getElementById("btn-ko").onclick = () => {
+  setLang("ko");
+  if (
+    window.practiceMode === "APPLIED" &&
+    isAppliedReviewScreen === true &&
+    appliedReviewData
+  ) {
+    redrawAppliedReview();
+  }
+}; 
+
+
+ // ★ ここだけが修正ポイント
+ // DOMが揃ってから言語を反映
+   if (typeof setLang === "function") {
+     setLang(currentLang);
+  }
+   
+});
+</script>
+ 
+</body>
+</html>

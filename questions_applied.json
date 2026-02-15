@@ -1,0 +1,386 @@
+{
+    "questions": [
+      {
+        "id": "AP_001",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "から・あとで・ましょう",
+        "question": "まりさんへ \n\n  きのうは びょういんに 行きました。\nあたまが いたかったです（A）、\nくすりを 飲みました。\nびょういんの（B）、えきの ちかくで コーヒーを 飲みました。\nよかったら、こんど また 話し（C）。\n\nミナ",
+        "choices": [
+          "Aから・Bあとで・Cましょう",
+          "Aでも・B中で・Cました",
+          "Aから・Bあとで・Cません"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【から】は理由を言うときに使います。\n【後で】は、ある行動のあとに次の行動をする時に使います。\n【ましょう】は、相手をさそう時の言い方です。",
+          "en": "\"kara\" is used to give a reason.\n\"ato de\" means after doing something.\n\"mashou\" is used to invite someone politely.",
+          "de": "„kara“ wird verwendet, um einen Grund anzugeben.\n„ato de“ bedeutet „nachdem man etwas getan hat“.\n„mashou“ wird benutzt, um jemanden einzuladen.",
+          "ko": "「から」는 이유를 말할 때 사용합니다.\n「あとで」는 어떤 행동을 한 뒤에 다음 행동을 할 때 사용합니다.\n「ましょう」는 상대를 권유할 때 쓰는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_002",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "でも・ながら・い形容詞過去",
+        "question": "今日のあさ、雨が ふって いました。（A）、家を 出る とき、はれて いました。\nそれで、えきまで 歩いて 行きました。\nえきの ちかくで、友だちに 会いました。\nコーヒーを 飲み（B）、いろいろな ことを 話しました。\nつかれて いましたが、とても（C）。",
+        "choices": [
+          "Aでも・Bながら・Cたのしかったです",
+          "Aそして・Bまして・Cたのしいでした",
+          "Aでも・Bまして・Cたのしかったです"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【でも】は、前の内容と反対・対照のことを言うときに使います。\n【ながら】は、二つの動作を同時にする時に使います。\n【い形容詞過去】は、「たのしい → たのしかったです」のように、過去の気持ちや状態を表します。",
+          "en": "\"demo\" is used to show contrast.\n\"nagara\" means doing two actions at the same time.\nThe past form of i-adjectives expresses past feelings or states (e.g. fun → was fun).",
+          "de": "„demo“ wird verwendet, um einen Gegensatz auszudrücken.\n„nagara“ bedeutet, zwei Handlungen gleichzeitig zu machen.\nDie Vergangenheitsform von i-Adjektiven beschreibt frühere Gefühle oder Zustände.",
+          "ko": "「でも」는 앞의 내용과 반대되는 상황을 말할 때 사용합니다.\n「ながら」는 두 가지 행동을 동시에 할 때 씁니다.\n이형용사 과거형은 과거의 상태나 감정을 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_003",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "から・それで・で",
+        "question": "ゆかさんへ \n\n  ゆかさん、げんきですか。\nわたしは 今日、会社へ 行きました。でも、えきで じこが ありました（A）、でんしゃが 来ませんでした。（B）、タクシーで 会社へ 行きました。しごとは いそがしかったですが、じょうずに できました。\n明日は 休みですから、うちで ゆっくり します。\nよかったら、こんど オンライン（C）、話しませんか。\n\nミナ",
+        "choices": [
+          "Aから・Bそれで・Cで",
+          "Aけど・Bそれで・Cと",
+          "Aから・Bそれから・Cで"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【から】は理由を表します。\n【それで】は、前の理由を受けた結果を言うときに使います。\n【で】は、手段・方法や場所を表します（オンラインで）。",
+          "en": "\"kara\" expresses a reason.\n\"sorede\" shows a result based on that reason.\n\"de\" indicates a means or method (online).",
+          "de": "„kara“ gibt einen Grund an.\n„sorede“ zeigt ein Ergebnis aufgrund dieses Grundes.\n„de“ bezeichnet ein Mittel oder eine Art und Weise (online).",
+          "ko": "「から」는 이유를 나타냅니다.\n「それで」는 그 이유에 따른 결과를 말할 때 사용합니다.\n「で」는 수단이나 방법을 나타냅니다(온라인으로)."
+        }
+      },
+      {
+        "id": "AP_004",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "で・から・て形",
+        "question": "今日は 友だちと 買いものに 行きました。スーパーで いろいろな ものを 買いました。\nたとえば、りんごや パンを 買いました。\nそのあと、こうえん（A）、コーヒーを 飲みました。\nでも、雨が ふって きました（B）、はやく かえりました。\n家に かえった あとで、テレビを（C）、休みました。",
+        "choices": [
+          "Aで・Bから・C見て",
+          "Aに・Bから・C見て",
+          "Aで・Bから・C見ました"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【で】は、行動が行われる場所を表します（こうえんで）。\n【から】は、理由を表します（雨がふってきたから）。\n【て形】は、動作をつなげて順番に説明するときに使います（見て、休みました）。",
+          "en": "\"de\" indicates the place where an action happens.\n\"kara\" expresses a reason.\nThe te-form connects actions in sequence.",
+          "de": "„de“ bezeichnet den Ort, an dem eine Handlung stattfindet.\n„kara“ gibt einen Grund an.\nDie Te-Form verbindet Handlungen in zeitlicher Reihenfolge.",
+          "ko": "「で」는 행동이 이루어지는 장소를 나타냅니다.\n「から」는 이유를 나타냅니다.\n「て형」은 동작을 순서대로 이어 줄 때 사용합니다."
+        }
+      },
+      {
+        "id": "AP_005",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "たり〜たり・です",
+        "question": "ゆりさんへ \n\n  ゆりさん、げんきですか。\nわたしは 今日、友だちの たんじょうびの パーティーに 行きました。\nおいしい ものが たくさん（A）。\nたとえば、ケーキや ジュースなどです。\nみんなで うたを うた（B）、えいがを 見（B）しました。\nとても たのしかったです。\n明日は 休みですから、うれしい（C）。\nよかったら、えきで 会いましょう。\n\nミナ",
+        "choices": [
+          "Aありました・Bったり/たり・Cです",
+          "Aありません・Bったり/たり・Cでした",
+          "Aありました・Bって/ったり・Cです"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【たり】は、いくつかの行動や例をあげるときに使います。\n【です】は、文をていねいに終わらせる言い方です。",
+          "en": "\"tari\" is used to list examples of actions.\n\"desu\" is a polite sentence ending.",
+          "de": "„tari“ wird verwendet, um mehrere Handlungen oder Beispiele aufzuzählen.\n„desu“ ist eine höfliche Satzendung.",
+          "ko": "「たり」는 여러 행동이나 예를 들 때 사용합니다.\n「です」는 정중하게 문장을 끝낼 때 쓰입니다."
+        }
+      },
+      {
+        "id": "AP_006",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "てもいい・と・い形容詞（過去）",
+        "question": "今日は 先生に にほんごを おしえて もらいました。\n学校では、先生に たくさん しつもん（A）いいです。\n先生は とても しんせつです。\nそのあと、きょうしつで、友だち（B）たくさん べんきょうしました。\nとても むずかしかったですが、たのし（C）。\n夜は うちで、日本の えいがを 見て、ねました。",
+        "choices": [
+          "Aしても・Bと・Cかったです",
+          "Aしても・Bに・Cいでした",
+          "Aしては・Bと・Cかったです"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【てもいい】は、許可を表す言い方です（質問してもいい）。\n【と】は、一緒に行動する相手を表します（友だちと）。\n【い形容詞（過去）】は、「たのしい → たのしかったです」のように、過去の気持ちを表します。",
+          "en": "\"te mo ii\" is used to give permission.\n\"to\" indicates doing something together with someone.\nThe past form of i-adjectives expresses past feelings or states.",
+          "de": "„te mo ii“ drückt eine Erlaubnis aus.\n„to“ bezeichnet eine Person, mit der man etwas zusammen macht.\nDie Vergangenheitsform von i-Adjektiven beschreibt frühere Gefühle.",
+          "ko": "「てもいい」는 허락을 나타내는 표현입니다.\n「と」는 함께 행동하는 대상을 나타냅니다.\n이형용사 과거형은 과거의 감정이나 상태를 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_007",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "で・てから・ましょう",
+        "question": "みさきさんへ \n\n  みさきさん、げんきですか。\nわたしは 今日、えきまで バス（A）行きました。\nとても こんで いました。それから、えきの ちかくで 友だちに 会いました。\nひるごはんを 食べて（B）、いっしょに えいがを 見ました。\nとても おもしろかったです。でも、すこし ねむかったです。\n明日は 休みです。よかったら、また 話し（C）。\n\nミナ",
+        "choices": [
+          "Aで・Bから・Cましょう",
+          "Aに・Bあとで・Cましょう",
+          "Aで・Bから・Cます"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【で】は、乗り物や手段を表します（バスで）。\n【てから】は、ある行動のあとで次の行動をする時に使います（食べてから）。\n【ましょう】は、相手をさそう時の言い方です。",
+          "en": "\"de\" indicates a means of transportation.\n\"te kara\" means doing something after another action.\n\"mashou\" is used to invite someone politely.",
+          "de": "„de“ bezeichnet ein Verkehrsmittel oder Mittel.\n„te kara“ bedeutet, etwas nach einer anderen Handlung zu tun.\n„mashou“ wird verwendet, um jemanden einzuladen.",
+          "ko": "「で」는 교통수단이나 수단을 나타냅니다.\n「てから」는 어떤 행동을 한 뒤에 다음 행동을 할 때 사용합니다.\n「ましょう」는 상대를 권유할 때 쓰는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_008",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "あります・て形・後で",
+        "question": "今日は 会社で たくさん しごとが（A）。\n朝、コーヒーを 飲んでから、でんしゃに 乗りました。\nとても いそがしかったですから、すこし つかれました。\nひるは 友だちと レストランで ごはんを 食べました。\nそのあと、スーパーへ 買いものを し（B）、行きました。\n肉が とても 高かったです。\nつかれて いましたから、ごはんを 食べた（C）、すぐに ねました。",
+        "choices": [
+          "Aありました・Bに・Cあとで",
+          "Aあります・Bて・Cあとで",
+          "Aありました・Bて・Cから"
+        ],
+        "answer": 1,
+        "explanation": {
+          "ja": "【あります】は、今ある状態や事実を言うときに使います。\n【て形】は、動作をつなげて順番を表します（して、行きました）。\n【後で】は、ある行動のあとに次の行動をすることを表します。",
+          "en": "\"arimasu\" is used to describe an existing state or fact.\nThe te-form connects actions in sequence.\n\"ato de\" means after doing something.",
+          "de": "„arimasu“ beschreibt einen bestehenden Zustand oder eine Tatsache.\nDie Te-Form verbindet Handlungen in Reihenfolge.\n„ato de“ bedeutet „nachdem man etwas getan hat“.",
+          "ko": "「あります」는 현재 존재하거나 일어난 사실을 말할 때 사용합니다.\n「て형」은 동작을 이어 순서를 나타냅니다.\n「後で」는 어떤 행동을 한 뒤에 다음 행동을 함을 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_009",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "です・たり〜たり・たい",
+        "question": "ともこさんへ \n\n  ともこさん、げんきですか。\nわたしは 今日、海へ 行きました。\n天気が よかった（A）から、とても きれいでした。\n海で およい（B）、すなで あそん（B）しました。\nそれから、ちかくの 店で アイスを 食べました。\nあつかったですから、とても おいしかったです。\n今日は たくさん しゃしんを とりました。\nこんど、ともこさんに 見せ（C）。\n\nミナ",
+        "choices": [
+          "Aです・Bだり・Cたいです",
+          "Aでした・Bで・Cたいです",
+          "Aです・Bだり・Cましょう"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【です】は、文をていねいに終わらせる言い方です。\n【たり〜たり】は、いくつかの行動や例をあげるときに使います（およいだり、あそんだり）。\n【たい】は、自分のしたい気持ちを表します（見せたいです）。",
+          "en": "\"desu\" is a polite sentence ending.\n\"tari~tari\" is used to list example actions.\n\"tai\" expresses what the speaker wants to do.",
+          "de": "„desu“ ist eine höfliche Satzendung.\n„tari~tari“ wird verwendet, um mehrere Handlungen als Beispiele zu nennen.\n„tai“ drückt einen Wunsch oder eine Absicht des Sprechers aus.",
+          "ko": "「です」는 문장을 정중하게 끝낼 때 사용합니다.\n「たり〜たり」는 여러 행동을 예로 들 때 씁니다.\n「たい」는 하고 싶은 마음을 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_010",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "から・て形・てはいけません",
+        "question": "あやさんへ \n\n あやさん、げんきですか。\nわたしは きのうから ねつが あります。\n今日は びょうきです（A）、しごとを 休みました。\nそれで、くすりを（B）休みました。\nまだ よくないですから、外に 出ては（C）。\nよく なったら、また 会いましょう。\n\nミナ",
+        "choices": [
+          "Aから・B飲んで・Cいけません",
+          "Aけど・B食べて・Cいけません",
+          "Aから・B飲んだから・Cいいです"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【から】は理由を表します（病気ですから）。\n【て形】は、行動をつなげて順番を表します（飲んで休みました）。\n【てはいけません】は、禁止を表す言い方です（出てはいけません）。",
+          "en": "\"kara\" expresses a reason.\nThe te-form connects actions in sequence.\n\"te wa ikemasen\" is used to express prohibition.",
+          "de": "„kara“ gibt einen Grund an.\nDie Te-Form verbindet Handlungen in zeitlicher Reihenfolge.\n„te wa ikemasen“ drückt ein Verbot aus.",
+          "ko": "「から」는 이유를 나타냅니다.\n「て형」은 행동을 이어 순서를 나타냅니다.\n「てはいけません」는 금지를 나타내는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_011",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "から・が・い形容詞（否定過去）",
+        "question": "今日は 朝から さむかったです。\nシャワーを あびて（A）、あたたかい コーヒーを 飲みました。\nひるは 友だちと レストランに 行きました。\nピザを 食べたかったです（B）、ありませんでした。\n明日は 休みたいですから、うちに います。\n今日は あまり たのし（C）です。",
+        "choices": [
+          "Aから・Bが・Cくなかった",
+          "Aから・Bが・Cかった",
+          "Aあとで・Bでも・Cくなかった"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【から】は理由やきっかけを表します（シャワーをあびてから）。\n【が】は、前の期待と違う結果をやわらかくつなぐときに使います（食べたかったですが、ありませんでした）。\n【い形容詞（否定過去）】は、「たのしい → たのしくなかった」のように、過去の否定を表します。",
+          "en": "\"kara\" indicates a reason or starting point.\n\"ga\" connects two clauses with a contrasting result.\nThe negative past form of i-adjectives expresses that something was not so in the past.",
+          "de": "„kara“ zeigt einen Grund oder Ausgangspunkt an.\n„ga“ verbindet Sätze mit einem erwartungswidrigen Ergebnis.\nDie verneinte Vergangenheitsform von i-Adjektiven drückt aus, dass etwas früher nicht so war.",
+          "ko": "「から」는 이유나 계기를 나타냅니다.\n「が」는 기대와 다른 결과를 부드럽게 이어 줍니다.\n이형용사 부정 과거형은 과거에 그렇지 않았음을 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_012",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "ながら・それで・ましょう",
+        "question": "りかさんへ \n\n  りかさん、げんきですか。\nわたしは 今、えきで でんしゃを まち（A）、この 手紙を 書いています。\n今日は 大切な しけんが あります。\n（B）、すこし しんぱいです。\nしけんの あと、いっしょに コーヒーを（C）。\nもし 時間が あったら、カフェに 行きませんか。\n\nミナ",
+        "choices": [
+          "Aながら・Bそれで・C飲みましょう",
+          "Aながら・Bそれから・C飲みます",
+          "Aて・Bそれで・C飲みましょう"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【ながら】は、二つの動作を同時に行うときに使います（待ちながら書く）。\n【それで】は、前の内容を受けた結果・気持ちを表します。\n【ましょう】は、相手をさそう表現です。",
+          "en": "\"nagara\" is used to do two actions at the same time.\n\"sorede\" shows a result or feeling based on the previous situation.\n\"mashou\" is used to invite someone.",
+          "de": "„nagara“ wird verwendet, um zwei Handlungen gleichzeitig auszudrücken.\n„sorede“ zeigt ein Ergebnis oder Gefühl aus der vorherigen Situation.\n„mashou“ dient dazu, jemanden einzuladen.",
+          "ko": "「ながら」는 두 가지 행동을 동시에 할 때 사용합니다.\n「それで」는 앞의 상황에 따른 결과나 감정을 나타냅니다.\n「ましょう」는 상대를 권유할 때 쓰는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_013",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "や・そして・ませんか",
+        "question": "今日は 朝から いそがしかったです。母と いっしょに いちばに 行きました。\nやさい（A）、魚（A）、肉などを 買いました。\n夜は うちで、りょうりを しました。\nとても たのしかったです。（B）、りょうりも おいしかったです。\n明日は ケーキを つくり（C）。",
+        "choices": [
+          "Aや・Bそして・Cたいです",
+          "Aと・Bそれで・Cました",
+          "Aや・Bでも・Cたいです"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【や】は、いくつかの物を例としてあげるときに使います。\n【そして】は、文や出来事を順につなぐときに使います。\n【ませんか】は、相手をやさしくさそう表現です。",
+          "en": "\"ya\" is used to list examples.\n\"soshite\" connects sentences in sequence.\n\"masen ka\" is a polite way to invite someone.",
+          "de": "„ya“ wird verwendet, um mehrere Dinge als Beispiele aufzuzählen.\n„soshite“ verbindet Sätze in zeitlicher Reihenfolge.\n„masen ka“ ist eine höfliche Einladung.",
+          "ko": "「や」는 여러 가지를 예로 들 때 사용합니다.\n「そして」는 문장이나 사건을 순서대로 연결합니다.\n「ませんか」는 부드럽게 권유하는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_014",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "ありました・ませんか・ましょう",
+        "question": "りなさんへ \n\n  りなさん、げんきですか。\nわたしは 今日、会社で たくさん しごとが（A）。\nそれで、とても つかれました。\nひるは 外で パンを 食べました。\nでも、あまり おいしく ありませんでした。\n明日 いっしょに ごはんを 食べ（B）。\nおいしい カフェを しっています。\nよかったら、その カフェに 行き（C）。\n\nミナ",
+        "choices": [
+          "Aありました・Bませんか・Cましょう",
+          "Aあります・Bません・Cましょう",
+          "Aありました・Bませんか・Cました"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【ありました】は、過去にあったことを言うときに使います。\n【ませんか】は、相手をやさしくさそう表現です。\n【ましょう】は、いっしょに何かをしようと提案するときに使います。",
+          "en": "\"arimashita\" is used to talk about something that existed in the past.\n\"masen ka\" is a polite way to invite someone.\n\"mashou\" is used to suggest doing something together.",
+          "de": "„arimashita“ wird verwendet, um über etwas Vergangenes zu sprechen.\n„masen ka“ ist eine höfliche Einladung.\n„mashou“ wird benutzt, um gemeinsam etwas vorzuschlagen.",
+          "ko": "「ありました」는 과거에 있었던 일을 말할 때 사용합니다.\n「ませんか」는 상대를 부드럽게 권유하는 표현입니다.\n「ましょう」는 함께 하자는 제안을 할 때 씁니다."
+        }
+      },
+      {
+        "id": "AP_015",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "て形・が・い形容詞（否定過去）",
+        "question": "今日は 朝から 雨が ふって いました。\nそれで、かさを じゅんび（A）から、学校に 行きました。\nひるは 友だちと 外で ごはんを 食べました（B）、さむかったですから、すぐに 中に 入りました。\n夜は うちで テレビを 見て、はやく ねました。\n今日は あまり たのしく（C）。",
+        "choices": [
+          "Aして・Bが・Cありませんでした",
+          "Aして・Bそれから・Cなかったでした",
+          "Aした・Bので・Cなかったでした"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【て形】は、動作をつなげて順番を表します（準備してから）。\n【が】は、前の内容と対照的な理由や状況をやわらかくつなぐときに使います。\n【い形容詞（否定過去）】は、「たのしい → たのしくありませんでした」のように、過去の否定を表します。",
+          "en": "The te-form connects actions in sequence.\n\"ga\" softly links contrasting situations.\nThe negative past form of i-adjectives expresses that something was not so in the past.",
+          "de": "Die Te-Form verbindet Handlungen in zeitlicher Reihenfolge.\n„ga“ verbindet Sätze mit einem leichten Gegensatz.\nDie verneinte Vergangenheitsform von i-Adjektiven zeigt, dass etwas früher nicht so war.",
+          "ko": "「て형」은 행동을 이어 순서를 나타냅니다.\n「が」는 대조되는 상황을 부드럽게 이어 줍니다.\n이형용사 부정 과거형은 과거에 그렇지 않았음을 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_016",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "それで・たり〜たり・ませんか",
+        "question": "まりさんへ \n\n  まりさん、げんきですか。\nわたしは 今日、まちで 友だちに 会いました。\n友だちは いそがしいですから、すぐに かえりました。（A）、\nわたしは 一人で コーヒーを 飲ん（B）、本を 読ん（B）しました。\n今、春ですから、春の 花が とても きれいです。\nこんど、いっしょに、こうえんで、さんぽを（C）。\n\nミナ",
+        "choices": [
+          "Aそれで・Bだり・Cしませんか",
+          "Aそれから・Bだり・Cしませんでした",
+          "Aそれで・Bで・Cしませんか"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【それで】は、前の理由を受けた結果を表します。\n【たり〜たり】は、いくつかの行動を例としてあげるときに使います。\n【ませんか】は、相手をやさしくさそう表現です。",
+          "en": "\"sorede\" shows a result based on the previous reason.\n\"tari~tari\" is used to list example actions.\n\"masen ka\" is a polite way to invite someone.",
+          "de": "„sorede“ zeigt ein Ergebnis aufgrund des vorherigen Grundes.\n„tari~tari“ wird verwendet, um Handlungen als Beispiele aufzuzählen.\n„masen ka“ ist eine höfliche Einladung.",
+          "ko": "「それで」는 앞의 이유에 따른 결과를 나타냅니다.\n「たり〜たり」는 여러 행동을 예로 들 때 사용합니다.\n「ませんか」는 부드럽게 권유하는 표현입니다."
+        }
+      },
+      {
+        "id": "AP_017",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "から・が・ながら",
+        "question": "今日は 休みでした。\n朝、パンを 食べて（A）、コーヒーを 飲みました。\nそのあと、へやを そうじして、えきまで 歩きました。\nひるは 友だちと こうえんで、うんどうしました。\nとても たのしかったです（B）、すこし つかれました。\nそれで、うちに かえって、おんがくを 聞き（C）、本を 読みました。\n夜は テレビを 見て、はやく ねました。",
+        "choices": [
+          "Aから・Bが・Cながら",
+          "Aあとで・Bから・Cまして",
+          "Aあとで・Bが・Cながら"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【から】は、前の動作を終えて次の行動に移る流れを表します（食べてから）。\n【が】は、前後の内容を対照的につなぐときに使います。\n【ながら】は、二つの動作を同時に行うときに使います（聞きながら読む）。",
+          "en": "\"kara\" shows moving to the next action after completing the previous one.\n\"ga\" connects contrasting clauses.\n\"nagara\" expresses doing two actions at the same time.",
+          "de": "„kara“ zeigt den Übergang zur nächsten Handlung nach Abschluss der vorherigen.\n„ga“ verbindet Sätze mit einem Gegensatz.\n„nagara“ drückt gleichzeitige Handlungen aus.",
+          "ko": "「から」는 앞의 행동을 마친 뒤 다음 행동으로 넘어감을 나타냅니다.\n「が」는 대조되는 내용을 이어 줍니다.\n「ながら」는 두 가지 행동을 동시에 할 때 사용합니다."
+        }
+      },
+      {
+        "id": "AP_018",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "い形容詞（過去）・で・から",
+        "question": "みえさんへ \n\n  みえさん、げんきですか。\nわたしは 今日、しごとが たくさん ありました。\nそれで、夜まで いそがし（A）。\nでも、えきの ちかく（B）、あたらしい パンやを 見ました。\nとても おいしそうでした（C）、明日 買って 食べて みたいです。\nおいしかったら、こんど、いっしょに 食べましょう。\n\nミナ",
+        "choices": [
+          "Aかったです・Bで・Cから",
+          "Aかったでした・Bで・Cけど",
+          "Aかったです・Bに・Cから"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【い形容詞（過去）】は、「いそがしい → いそがしかったです」のように、過去の状態を表します。\n【で】は、場所を表します（えきのちかくで）。\n【から】は、理由を表します（おいしそうでしたから）。",
+          "en": "The past form of i-adjectives expresses a past state.\n\"de\" indicates a place.\n\"kara\" expresses a reason.",
+          "de": "Die Vergangenheitsform von i-Adjektiven beschreibt einen früheren Zustand.\n„de“ bezeichnet einen Ort.\n„kara“ gibt einen Grund an.",
+          "ko": "이형용사 과거형은 과거의 상태를 나타냅니다.\n「で」는 장소를 나타냅니다.\n「から」는 이유를 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_019",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "でしょう・前に・ている（否定）",
+        "question": "今日は 朝から よるまで、雨が ふって いました。\n明日も 雨が ふる（A）。\nそれで、かさを かばんに 入れました。\n学校に（B）前に、パンを 買いました。\n今日は たくさん 歩きました。\nまだ、しゅくだいを（C）。\nとても ねむいです。\n今日は とても つかれました。",
+        "choices": [
+          "Aでしょう・B行く・Cしていません",
+          "Aでしょう・B行った・Cしました",
+          "Aます・B行く・Cしていません"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【でしょう】は、話し手の推量や予想を表します（雨がふるでしょう）。\n【前に】は、ある行動より先の時点を表します（学校に行く前に）。\n【ている（否定）】は、まだその動作が行われていない状態を表します（していません）。",
+          "en": "\"deshou\" expresses a guess or expectation.\n\"mae ni\" indicates a time before another action.\nThe negative te-iru form shows that an action has not been done yet.",
+          "de": "„deshō“ drückt eine Vermutung oder Erwartung aus.\n„mae ni“ bezeichnet einen Zeitpunkt vor einer Handlung.\nDie verneinte Te-iru-Form zeigt, dass eine Handlung noch nicht ausgeführt wurde.",
+          "ko": "「でしょう」는 추측이나 예상을 나타냅니다.\n「前に」는 어떤 행동보다 앞선 시점을 나타냅니다.\n「ている(부정)」는 아직 그 행동을 하지 않은 상태를 나타냅니다."
+        }
+      },
+      {
+        "id": "AP_020",
+        "type": "APPLIED",
+        "grammar_group": "BASIC_GRAMMAR",
+        "grammar_item": "な形容詞・に・も",
+        "question": "きのう、そふと そぼと いっしょに、びじゅつかんに 行きました。\nとても（A）絵が たくさん ありました。\nそのあと、レストランに、ごはんを 食べ（B）、行きました。\nおいしい 食べものを 食べてから、ケーキ（C）食べました。\n今日は、とても たのしかったです。",
+        "choices": [
+          "Aきれいな・Bに・Cも",
+          "Aきれいに・Bに・Cなど",
+          "Aきれいな・Bて・Cも"
+        ],
+        "answer": 0,
+        "explanation": {
+          "ja": "【な形容詞】は、名詞を修飾するとき「な」を使います（きれいな絵）。\n【に】は、移動の目的や方向を表します（レストランに行く）。\n【も】は、追加・強調を表します（ケーキも食べました）。",
+          "en": "Na-adjectives use \"na\" when modifying nouns.\n\"ni\" indicates direction or destination.\n\"mo\" adds emphasis or inclusion (also).",
+          "de": "Na-Adjektive verwenden „na“ vor Nomen.\n„ni“ bezeichnet Ziel oder Richtung.\n„mo“ drückt Hinzufügung oder Betonung aus.",
+          "ko": "나형용사는 명사를 수식할 때 「な」를 씁니다.\n「に」는 방향이나 목적지를 나타냅니다.\n「も」는 추가나 강조를 나타냅니다."
+        }
+      }
+      
+    ]
+  }
+  
